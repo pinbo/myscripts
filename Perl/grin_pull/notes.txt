@@ -1,0 +1,6 @@
+# Update 12/15/2015
+GRIN search updated their website and now the URL uses "Accession ID" (a number) other than "Plant ID" (PI number) in the end to retreaive a website. So I updated the perl script using "Accession ID" to search.
+
+1. First you need to get the "Accession ID" using the PI number (select "allow multiple lines" to search multiple accessions and make sure there is a blank line in the end, otherwise the last one will not be searched)
+
+2. Using the "Accession ID" for input of the perl script

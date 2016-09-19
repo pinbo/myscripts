@@ -1,0 +1,875 @@
+1005637		Landrace
+1022877		Uncertain improvement status
+1043691		Uncertain improvement status
+1043709		Uncertain improvement status
+1043746		Uncertain improvement status
+1044560		Uncertain improvement status
+1058049	H-44/Marquis	Breeding material
+1059404		Breeding material
+1059468		Breeding material
+1059473		Breeding material
+1060005	H-44/2*Marquis	Breeding material
+1060144		Uncertain improvement status
+1061164	Hope/4*Baart//2*Big Club/3/3*Poso/4/2*Poso 41/5/Poso 42 	Cultivar
+1061469	Thatcher/Surpresa	Breeding material
+1061551	Frondoso//Chinese/Progress = Purdue 40106	Breeding material
+1061622	RL 2265/2*Redman	Breeding material
+1061800	Kenya 112/Ceres	Breeding material
+1064776	RL 2520/6*Thatcher/Kenya Farmer	Breeding material
+1065425	Maria Escobar//Egypt/Timstein/3/2*Conley/4/ND 81	Breeding material
+1066629	Menkeman//Timstein/McMurachy/3/Frocor	Breeding material
+1066968	Mentana/Kenya//Frontana/Cinco	Cultivar
+1067083	Marquis/H44	Cultivar
+1067116	Frontana//Kenya/Newthatch	Breeding material
+1067155	Frocor//Yaqui/Kentana	Breeding material
+1067185	Trapeano/Cajeme 54	Breeding material
+1067250	Frocor*2/4/Cometa//Newthatch/Mentana/3/Menkemen	Breeding material
+1067277	Lee/Frontana	Breeding material
+1069683		Breeding material
+1070117	Khapstein/10*Marquis	Genetic material
+1070123		Uncertain improvement status
+1070293		Uncertain improvement status
+1070298		Breeding material
+1070417		Breeding material
+1070594		Uncertain improvement status
+1071334	Yaktana 54//Norin 10/Brevor/3/3*Lerma Rojo	Cultivar
+1071394		Uncertain improvement status
+1071786		Landrace
+1071824		Landrace
+1072064	Frontana/3*Thatcher//II-44-29/2*Thatcher	Breeding material
+1072286	Pembina/II-52-329/3/II-53-388/III-58-4//II-53-546	Breeding material
+1072708	II-55-10/4/Pembina/II-52-329/3/II-53-388/III-58-4//II-53-546	Breeding material
+1073573	Lerma Rojo 64*2/Sonora 64	Breeding material
+1073634	Sonora 64A//Tezanos Pintos Precoz/Nainari 60	Breeding material
+1080048	Neepawa/7/4*Manitou//Africa 43/3*Thatcher/3/5*Manitou//Exchange/3*Thatcher/5/2*RL 4204/3/3*Manitou//Webster/4* Thatcher/4/5*Manitou//Centenario/6*Thatcher/6/Manitou/CI 7090	Breeding material
+1080061	Thatcher*6/CI 8115	Breeding material
+1080543	PK 176/Fronteira//PI 134880/Centana	Breeding material
+1090155		Landrace
+1104653	Premier/Wilhelmina	Cultivar
+1105110		Cultivar
+1105259		Uncertain improvement status
+1105264		Uncertain improvement status
+1105994		Uncertain improvement status
+1107896	Willem I/Wilhelmina//Wilhelmina	Cultivar
+1108353	selection from Hard Federation	Breeding material
+1110944	Anafil/Mocho de espiga branca	Breeding material
+1114243		Uncertain improvement status
+1115939		Landrace
+1115945		Landrace
+1116572		Landrace
+1116580		Uncertain improvement status
+1116589		Uncertain improvement status
+1120235		Cultivar
+1120243		Cultivar
+1121566		Cultivar
+1125701		Cultivar
+1126495		Landrace
+1126513		Landrace
+1126666		Uncertain improvement status
+1126667		Uncertain improvement status
+1127476	II-18889/Trapper//Baca	Cultivar
+1128267	Polyssu/Alfredo Chaves 6-21	Cultivar
+1128300	Americano 25C/Pelon 33C1	Cultivar
+1128464	Geralying/Cleveland/Hope	Breeding material
+1128832	Firbank/White Lammas 	Cultivar
+1129582		Landrace
+1129950	Wagga 13/Marshall's No. 3 	Cultivar
+1130028	Northern Champion/Cretan//Little Club 	Cultivar
+1130617		Uncertain improvement status
+1131409	Hope/Currawa/Dundee	Breeding material
+1131514	Federation/Webster	Breeding material
+1131519	Hope/Currawa	Breeding material
+1131520	Hope/Currawa/Dundee	Breeding material
+1131539	Kenya 2/Florence	Breeding material
+1132575	Wisc. 245 sib	Breeding material
+1132613	Hope/waratah	Breeding material
+1133123		Breeding material
+1133774		Uncertain improvement status
+1133846	Kenya/Florence/Dundee	Breeding material
+1133848	Kenya/Florence/Dundee	Breeding material
+1133915	Federation/Nabawa	Breeding material
+1133920	Hard Federation/Nabawa	Breeding material
+1133975	Tenmarq/Dundee	Breeding material
+1134102	selection from Hatif Inversable	Cultivar
+1134337		Breeding material
+1134348		Breeding material
+1135847		Landrace
+1136789	selection from Goiana landrace	Cultivar
+1136958	Florence/Aurora	Breeding material
+1137230	selection from Poltovka	Cultivar
+1137264	F5-31/Konosu 25 = Shiro-Daruma/Velvet//Florence/Igachikugo 	Cultivar
+1137269	Shinchunaga/Eshimashinriki	Cultivar
+1137272	Shinchunaga/Eshimashinriki	Cultivar
+1137277	selection from Chunaga (ex Hyogo)	Cultivar
+1138092	Inallettabile 96/Edda//Line 80 from USA	Cultivar
+1138095		Uncertain improvement status
+1138289		Breeding material
+1138464	Scheepers/39W73//C1-17-1-1-1/Scheepers; sib of Goudveld	Breeding material
+1138469	C1-17-1-1-1/Scheepers	Breeding material
+1140490		Uncertain improvement status
+1140496		Uncertain improvement status
+1140533	Tezanos Pintos Precoz/Sonora 64//Crim/3/Era	Cultivar
+1140582		Uncertain improvement status
+1141647		Landrace
+1141769		Landrace
+1142240		Landrace
+1143629		Landrace
+1144228		Landrace
+1144976		Landrace
+1145033	Allies/Vilmorin 23	Cultivar
+1145087	Mentana/Lin Calel M.A.	Cultivar
+1145095	Barleta 4d/Chino	Cultivar
+1145112		Uncertain improvement status
+1145116	Rieti/Wilhelmina//Akagomughi	Uncertain improvement status
+1147204	T. aestivum/Agropyron	Breeding material
+1147209	T. aestivum/Agropyron	Breeding material
+1147237	T. timopheevii/Steinwedel	Breeding material
+1149215	Oro/Bencubbin//Bencubbin	Breeding material
+1150679		Landrace
+1152057	Thule II/Finnish landrace	Cultivar
+1152058	Svea/Finnish landrace	Cultivar
+1152060	selection from Russian population	Cultivar
+1152639		Landrace
+1152767		Landrace
+1153643	Kenya 73/Reliance	Breeding material
+1153651	Australia 26/Kenya 58	Breeding material
+1154252		Breeding material
+1154828		Breeding material
+1154874		Landrace
+1154877		Landrace
+1156352	Carstens Stamm 40-44/Garnet	Cultivar
+1156398	Heines Kolben/38 MA//Garnet/Dzulzuli	Breeding material
+1157033	Svea/Finnish landrace	Cultivar
+1157045		Uncertain improvement status
+1157047	Marquis/Ruskea	Cultivar
+1157496		Uncertain improvement status
+1157513		Uncertain improvement status
+1157996		Landrace
+1158069		Landrace
+1159658	Federation/Gluyas 	Cultivar
+1159681		Uncertain improvement status
+1159693	Galego/Magueija	Breeding material
+1159714		Uncertain improvement status
+1159717	selection from Saumur de Mars	Cultivar
+1159772		Uncertain improvement status
+1159773		Uncertain improvement status
+1159820		Uncertain improvement status
+1159876	J.03/T. aestivum	Cultivar
+1159878	As/Secale cereale//Mq/Fram 1	Cultivar
+1159880		Uncertain improvement status
+1159904	Galego Barbedo/Vermelejoilo	Cultivar
+1159966		Breeding material
+1159970	H782/H783	Breeding material
+1160059		Uncertain improvement status
+1160062		Uncertain improvement status
+1160065		Uncertain improvement status
+1160079	selection from Mahon	Cultivar
+1160080	seleciton from Mahon	Cultivar
+1160082	Muzaffarnagar/NP 22	Cultivar
+1160108		Uncertain improvement status
+1160232	Galego Barbado/Lobeiro	Cultivar
+1160326		Cultivar
+1160352	Newthatch/Marroqui	Breeding material
+1160377	Newthatch/Marroqui	Breeding material
+1160389	Gabo//Peru/Supremo/3/Peru Gabo/Peru/3/Surpreza//Hope/Mediterranean/4/Peru	Breeding material
+1160393	Sunset/Yaqui	Breeding material
+1160397	Mayo//Supremo/Peru	Breeding material
+1160416	Pelon Colorado/Supremo	Breeding material
+1160428	Newthatch/Marroqui/3/Peru/Supremo//Peru	Breeding material
+1160448	Newthatch/Marroqui/3/Peru/Supremo//Peru	Breeding material
+1160516	Kenya/Marroqui//Marroqui/3/Peru	Breeding material
+1160517	Kenya/Marroqui//Marroqui/3/Peru	Breeding material
+1160523	Kenya/Marroqui//Marroqui/3/Peru	Breeding material
+1160543	Marroqui/Supremo//Marroqui/3/Peru	Breeding material
+1161227	selection from male sterile-facilitated recurrent selection population CCA-1977	Cultivar
+1161637		Uncertain improvement status
+1161716	Trintecinco/SLG 242-30	Cultivar
+1161733	Norin 16/Saitama No. 29	Cultivar
+1161768	Florence Aurore/Pusa	Breeding material
+1161776		Cultivar
+1161811		Breeding material
+1161822		Breeding material
+1161859	H1004/H1022	Breeding material
+1162085	03-35/012-9	Cultivar
+1162087	selection from landrace	Cultivar
+1162105	Diamant/Extra Kolben Ii	Cultivar
+1162356	Weibull 4099/Cahns 1833	Cultivar
+1162516	Catalan Blanco/Candeal 2	Breeding material
+1162705		Breeding material
+1162767	Extra Kolben II/Aurore	Cultivar
+1162791	Yantarnaja/turgidum from Czech.	Cultivar
+1162933		Uncertain improvement status
+1163044		Uncertain improvement status
+1163051		Uncertain improvement status
+1163068		Cultivar
+1163106		Cultivar
+1163178		Uncertain improvement status
+1163216	Florence/Aurore	Breeding material
+1163240		Uncertain improvement status
+1163349		Uncertain improvement status
+1163426		Uncertain improvement status
+1163442		Uncertain improvement status
+1163462		Cultivar
+1163468		Landrace
+1163482	Anafil/Ribeiro	Cultivar
+1163495	Pusa/II 386-15	Breeding material
+1163506		Uncertain improvement status
+1163516		Uncertain improvement status
+1163539		Uncertain improvement status
+1163548		Uncertain improvement status
+1163564		Uncertain improvement status
+1163597		Uncertain improvement status
+1163619		Uncertain improvement status
+1163633		Landrace
+1163655		Uncertain improvement status
+1163666		Uncertain improvement status
+1163681		Uncertain improvement status
+1163718	Extra Kolben II/Diamant	Breeding material
+1163720		Uncertain improvement status
+1163722	Little Club/Clarendon	Cultivar
+1163738	selection from Slovakian landrace	Cultivar
+1163740	Extra Kolben II/Diamant	Breeding material
+1163753	Hatvani 1109/Marquis	Cultivar
+1163770		Uncertain improvement status
+1163783		Breeding material
+1163819	selection from Slovak landrace	Cultivar
+1163841	Aurore/0805	Breeding material
+1163862		Uncertain improvement status
+1163940		Uncertain improvement status
+1163958		Uncertain improvement status
+1164002		Uncertain improvement status
+1164004		Uncertain improvement status
+1164007		Uncertain improvement status
+1164020		Uncertain improvement status
+1164092		Uncertain improvement status
+1164106		Uncertain improvement status
+1164107	Klein San Martin/Marquis	Cultivar
+1164108	Florence/Aurore	Breeding material
+1164158	Ruskea/Marquis	Cultivar
+1164376	S/K107-16	Breeding material
+1164379		Cultivar
+1164407		Uncertain improvement status
+1164475		Uncertain improvement status
+1164501		Landrace
+1164894		Breeding material
+1164895		Breeding material
+1164914		Breeding material
+1164917	Rio Negro/Litoral Precoz	Cultivar
+1168898	Maria Escobar/N.A. 101	Breeding material
+1168908	Maria Escobar//Klein H44/Marquis 	Cultivar
+1170032		Breeding material
+1170143	Galgalos/Kenya	Breeding material
+1170346		Uncertain improvement status
+1170349		Uncertain improvement status
+1172703	Maria Escobar//Klein H44/Marquis	Cultivar
+1173379		Landrace
+1174911		Breeding material
+1174916		Breeding material
+1174977		Uncertain improvement status
+1174980		Uncertain improvement status
+1175075		Landrace
+1175865		Breeding material
+1176217	Trintecinco/SLG 242-30	Cultivar
+1178513		Breeding material
+1178526		Breeding material
+1178533	Beladi 116/Regent 975-11	Breeding material
+1178551		Breeding material
+1179184	Jubile/Zanda	Cultivar
+1180203	Kanred/Frondoso/Purcan	Breeding material
+1180208	Aguilera//Kenya/Newthatch	Breeding material
+1181060	Rieti/Wilhelmina//Akagomughi	Cultivar
+1181212	Sinvalocho/Petiblanco	Breeding material
+1181223	Sinvalocho/Petiblanco	Breeding material
+1181245	Sinvalocho/Petirrojo	Breeding material
+1181253	Sinvalocho/Petirrojo	Breeding material
+1181260	Sinvalocho/Petirrojo	Breeding material
+1181270	Sinvalocho/Petirrojo	Breeding material
+1181290	38 M.A./Petirrojo	Breeding material
+1181302	Sinvalocho/Petiblanco	Breeding material
+1181309	Sinvalocho/Petiblanco	Breeding material
+1181314	Sinvalocho/Petiblanco	Breeding material
+1181317	Sinvalocho/Petiblanco	Breeding material
+1181326	Sinvalocho/Petiblanco	Breeding material
+1181331	38 M.A./Petirrojo	Breeding material
+1181332	38 M.A./Petirrojo	Breeding material
+1181340	Sinvalocho/Petiblanco	Breeding material
+1181343	Sinvalocho/Petiblanco	Breeding material
+1182069	Kleintrou//Gluyas Early/Spring Early	Cultivar
+1182071	C17-1-1-1/Scheepers//Kenya 8256G/3/39W61	Cultivar
+1182328	Na 709 (Kenya 291-J.1.1.1)/Hindi 62	Breeding material
+1183444		Uncertain improvement status
+1183718	P/K//Md	Breeding material
+1183719	1991/1756//P/3/Kentana 48	Breeding material
+1183720	S/K//P/S/3/P	Breeding material
+1183721	S/K//P/S/3/P	Breeding material
+1183722	S/K//P/S/3/P	Breeding material
+1183723	S/K//P/S/3/P	Breeding material
+1183724	S/K//P/S/3/P	Breeding material
+1183730	Aquileia/Kenya 3577-1	Breeding material
+1183731	Camarones/Kenya 9906	Breeding material
+1184437	Mariachi/Industrial Argentino	Breeding material
+1184850		Uncertain improvement status
+1184893	T. timopheevii/3*T. vulgare//2*Idead	Breeding material
+1184894	T. timopheevii/3*T. vulgare//2*Idead	Breeding material
+1184896	T.timopheevii/3*T.vulgare//2*Idead	Breeding material
+1184898	T. timopheevii/3*T. vulgare//2*Lemhi	Breeding material
+1184899	T. timopheevii/3*T. vulgare//2*Lemhi	Breeding material
+1185307		Breeding material
+1185410	Tinstein/Chugoku No. 79	Breeding material
+1186316		Cultivar
+1186319	selection from Sabanero 	Cultivar
+1186656	D.C./Ceres	Breeding material
+1186667	Kenya 184/Kenya 294	Breeding material
+1186677	Warigo/Kenya 184.P.2.A.1.F	Breeding material
+1187796	Saitama 27/Florence	Cultivar
+1187797	selection from landrace Chingtao Shantung	Cultivar
+1187799	Saitama 27/Florence	Cultivar
+1188165	Garnet/Heines Kolben//Heines Kolben/Raeckes Weiss-spelz	Cultivar
+1188476		
+1189111	Frontana/Kenya 58	Cultivar
+1189288		Landrace
+1190214	Kentana 48/Frontana//Mayo 48	Cultivar
+1190221	Thatcher/Santa Catalina	Cultivar
+1190229	Kenya 117/Mentana	Cultivar
+1192711	Newthatch/Florence 386	Breeding material
+1195261		Breeding material
+1195264	318AJ/Newthatch	Breeding material
+1195267	318AJ/Regent	Breeding material
+1195268	RL2265/3*Redman//360H	Breeding material
+1195269	B256G/318AJ4A1	Breeding material
+1195271	B256G/318AJ4A1	Breeding material
+1195275	360F8/4A/Granadero Klein	Breeding material
+1195276	Nabawa/Riverina-Hope//318AJ4A1	Breeding material
+1195277	Nabawa/Riverina-Hope//318AJ4A1	Breeding material
+1195590	Japhet/Bordeaux//Janetzkis Fruher	Cultivar
+1195683		Cultivar
+1196116		Cultivar
+1197032	India 9/2*Solid Straw Tuscan//Dreadnought/3/Cross 7//Federation/Kenya 744	Cultivar
+1198082	T-25/3/K-6/Sirban Prolific//K-10/K-65	Cultivar
+1198546	Giza 135/L 1167-109	Breeding material
+1198552	L1167-109/Giza 135-2	Breeding material
+1198554	L 1167-109/Giza 135-2	Breeding material
+1198578	8473//Marquis/Hatif Inversable Barbu	Cultivar
+1198579	Ankar II/Weibull 1731-37	Cultivar
+1198763		Uncertain improvement status
+1199248	Lutescens 2074/Sarroza	Cultivar
+1199273		Landrace
+1199289	selection from BG 20 = Erythrospermum 929/Lutescens 97	Cultivar
+1200001	Fram II/Sopu	Cultivar
+1200317		Landrace
+1200877	San Pastore/Funo	Cultivar
+1201202	Erythrospermum 84/Hordeiforme 189	Cultivar
+1201628		Uncertain improvement status
+1201829	Puora*4/Kenya C6041 	Cultivar
+1202644		Cultivar
+1203164		Uncertain improvement status
+1203165		Uncertain improvement status
+1203982		Breeding material
+1203985		Breeding material
+1203986		Breeding material
+1204582	Frontana/Kenya 58	Breeding material
+1204622		Cultivar
+1204626		Cultivar
+1204627		Uncertain improvement status
+1206826	selection from Moskovka	Cultivar
+1207576		Landrace
+1207583		Uncertain improvement status
+1207674	Ble de la Paix/Hybride des Allies	Cultivar
+1207738	Florence/Aguilera 8	Cultivar
+1207906		Landrace
+1207999		Uncertain improvement status
+1208015	Beloturka/Poltavka	Cultivar
+1208088	Shoawase/Saitama 27	Cultivar
+1208089	Saitama 27/Florence	Cultivar
+1208090	selection from landrace Chingtao Shantung	Cultivar
+1208319	Atle/Hybrid	Cultivar
+1208719	Svalofs Kolben/Hallands	Cultivar
+1208903	Bandeirante/Yaqui Re//Jhiaveva	Breeding material
+1208905	Supremo/3/Gabo//Kenya/General Urquiza	Breeding material
+1208906		Breeding material
+1210152	Chino 166/Lin Calel M.A.	Breeding material
+1210159	Riccio/Lin Calel M.A.	Breeding material
+1210274		Cultivar
+1211265	selection from King's Early 	Cultivar
+1211369	College Solid Straw Tuscan/White Fife	Cultivar
+1212489	Jubile/Fylgia	Cultivar
+1214181		Uncertain improvement status
+1214363	selection from Polish landrace 	Cultivar
+1214364		Cultivar
+1214371	selection from Polish landrace 	Cultivar
+1214375		Cultivar
+1214506	Bankowska Graniatka/Ostka Kleszcewka	Cultivar
+1215301		Uncertain improvement status
+1215302		Cultivar
+1215305		Uncertain improvement status
+1215306		Cultivar
+1223247	N159/Gluretty	Cultivar
+1223306	selection from landrace 	Cultivar
+1224056	Newthatch/Florence Aurore	Breeding material
+1224664	Wisc. 245/Supremo	Breeding material
+1224665	Reward/CI 12632	Cultivar
+1224668	Kenya 73/Reliance	Breeding material
+1224859	Minister/Peko	Cultivar
+1225516	Lee/Frontana	Cultivar
+1226149		Breeding material
+1226160	Thatcher//Kenya 117A/Mida/3/Frontana/4*Thatcher/4/Thatcher/5/Frontana/4*Thatcher	Cultivar
+1229340		Uncertain improvement status
+1230590		Cultivar
+1233076	Gabo/Quaderna//Wisc. 245/3/Mentana/Kenya//Supremo	Cultivar
+1233077	Gabo/Quaderna//Kenya Farmer/3/Gabo	Cultivar
+1233636	Progress/Atle	Cultivar
+1233639	Heines 2174/Peko//Koga II	Cultivar
+1233643	Kentana/Rio Negro	Breeding material
+1233645		Cultivar
+1235576	Triesdorf Stamm 21-40/von Rumker Erli	Cultivar
+1238267	Weibull 8388/Weibull 8244	Cultivar
+1239101		Cultivar
+1239261		Uncertain improvement status
+1239277		Landrace
+1239459		Uncertain improvement status
+1239477		Uncertain improvement status
+1239480		Uncertain improvement status
+1239502		Uncertain improvement status
+1239506		Uncertain improvement status
+1239556		Uncertain improvement status
+1239570		Uncertain improvement status
+1239587		Uncertain improvement status
+1239596		Uncertain improvement status
+1239614		Uncertain improvement status
+1240413	Warigo/Sterling	Cultivar
+1240549	Steinwedel 2/Khapli	Breeding material
+1240679	Thatcher/Santa Cantalina//Frocor	Cultivar
+1242034	selection from Thatcher 	Cultivar
+1242041	Milturum 45/Kooperatorka	Cultivar
+1242058	Tezanos Pintos Precoz/Yaqui 50//Sonora 64A/3/Yaktana 54//Norin 10/Brevor/3/Mazoe	Cultivar
+1242063	Frontana/Kenya 58//Newthatch/3/2*Bonza	Cultivar
+1242064	Frontana/Yaqui 48//2*Africo Mayo	Cultivar
+1244767		Uncertain improvement status
+1245953	F430ND/3/Yaktana 54//Norin 10/Brevor 21	Cultivar
+1246028		Uncertain improvement status
+1246354	complex cross involving Dirk 48, Orfed, Uruguay 1064 	Cultivar
+1251306	gamma-ray mutant in Sinvalocho M.A.	Cultivar
+1251550	HD 12/Cappelle Desprez/Fasan	Cultivar
+1252123	Koga/Fylby	Cultivar
+1252175		Cultivar
+1252244	Karn/Yaktana 548	Cultivar
+1252568	Newthatch/Aguilera 4//Thatcher/Mentana	Cultivar
+1253206	Teutonen/Cappelle	Cultivar
+1253995		Cultivar
+1255666	Pitic 62/Chris sib//Sonora 64 = II19957	Cultivar
+1256477		Uncertain improvement status
+1256487	Heines 2174/Peko//Koga II	Cultivar
+1256494	Yaqui 48//Kenya 58/Newthatch/3/Frocor/Kenya AD/Gabo	Cultivar
+1256495	Maida/McMurachy//Exchange/3/2*(Africa/Mayo)	Cultivar
+1256668		Cultivar
+1256670		Cultivar
+1256698	Yaqui 50/Kentana 48	Cultivar
+1256709	Yaqui/Kentana//2*(Africa/Mayo)	Cultivar
+1256769	Frontana*2/Kenya 58	Cultivar
+1256785		Breeding material
+1256789		Breeding material
+1256799		Breeding material
+1256803		Breeding material
+1256805	Willet/Veranopolis	Cultivar
+1256806	Colotana 296.52//Colotana 824-51/Yaktana 54	Cultivar
+1256818	Frontana/Kenya 58//Heana	Cultivar
+1258164		Cultivar
+1258331		Breeding material
+1258333		Breeding material
+1258856		Landrace
+1258858		Landrace
+1258883		Landrace
+1259302		Cultivar
+1262055		Breeding material
+1262090		Breeding material
+1262117	Mentana/Lin Calel	Cultivar
+1262317	Lichtis Fruh//Erbachshofer Janetzki/Japhet	Cultivar
+1262318	Maxxaux No. 1/Marquis	Cultivar
+1262334		Uncertain improvement status
+1262350		Uncertain improvement status
+1262426		Cultivar
+1262464		Breeding material
+1262474		Uncertain improvement status
+1262518	selection from Neizvestnyi-Obrazets 	Cultivar
+1262540		Breeding material
+1262550		Cultivar
+1262562		Cultivar
+1262572	Peragis/Garnet//Teutonen/?/Heines Kolben/Peragis//Ardito/?/Peragis/Hohenheimer 25F//Marquis	Cultivar
+1262666		Cultivar
+1262684		Uncertain improvement status
+1262688		Uncertain improvement status
+1262690		Uncertain improvement status
+1262691		Uncertain improvement status
+1262692		Uncertain improvement status
+1262718		Cultivar
+1262782	Svenno/263.25-2	Breeding material
+1262808		Breeding material
+1262938		Breeding material
+1262949		Breeding material
+1262993	Karn II/MO 043-40	Cultivar
+1262997	Lerma Rojo//Norin 10/Brevor/3/An*3	Breeding material
+1263004	Frocor//Frontana/Yaqui 48/3/Narino sib	Cultivar
+1263018	Svenno/263-25.2	Breeding material
+1263020	B564/Chapingo 53	Breeding material
+1263064		Uncertain improvement status
+1263065	Africa/Mayo//Frocor	Breeding material
+1263066	Frontana/3*Bonza	Breeding material
+1263076	Frocor/3/(Kenya 58//Newthatch/Frocor)*2	Breeding material
+1263135	Svenno/263-25.2	Breeding material
+1267645	Ramifera/Majolka/Mexican	Breeding material
+1273996	Regent/Makhtar	Cultivar
+1274002	Rio Negro/Mentana*2//Kenya/3/Giza 135/Lerma 950	Cultivar
+1274787		Landrace
+1275542	Yaktana 54//Norin 10/Brevor 21-1c/3/Flameks	Cultivar
+1278702	Gabo//Rapier/Dundee/Kenya C6042/3/Dirk 48	Cultivar
+1278951	selection from Afghani landrace	Cultivar
+1278952	selection from Surkhak Mestnaja	Cultivar
+1278958	selection from landrace 	Cultivar
+1278961	selection from Lutescens 1121-27 	Cultivar
+1278963	selection from Thatcher	Cultivar
+1278974	Tadzhikskaja 16/Irodu 1006	Cultivar
+1283865		Uncertain improvement status
+1283866		Uncertain improvement status
+1283867		Uncertain improvement status
+1283870		Uncertain improvement status
+1283877	Florence/Aurore	Cultivar
+1286529	Red Hart/Ponta Grossa 1	Breeding material
+1287650	Von Rumkers Frureifer Dickkopf/Erli//Erli/Hope/3/Von Rumkers Fruhreifer Dickkopf	Cultivar
+1287662	Els/6*Ring	Cultivar
+1288147		Cultivar
+1288158		Cultivar
+1288474		Uncertain improvement status
+1288496		Uncertain improvement status
+1288500		Uncertain improvement status
+1288506		Uncertain improvement status
+1288533		Uncertain improvement status
+1291137		Landrace
+1291494	T. aestivum/T. Dicoccoides G-25/T. durum	Breeding material
+1291496	Giza 139/Hegazi Ahmer	Breeding material
+1291505		Landrace
+1291521		Landrace
+1291529		Landrace
+1291534		Landrace
+1295480	Meskren Mestnaja/Pionerka//Flora	Cultivar
+1304608		Cultivar
+1306295		Landrace
+1309614		Landrace
+1309711		Cultivar
+1309720	Yaqui 50 Enano/II-8156//Kalyansona/3/Tobari 66/Ciano F67	Cultivar
+1309721		Landrace
+1309726		Uncertain improvement status
+1309740	Klein Enpaeto*2//Triumph/CI 13523, Stw 646408	Breeding material
+1309741	Klein Enpaeto//Wrr/Minn. III-54-12, NB 64537	Breeding material
+1309742	Klein Enpaeto//Triumph/CI13523, Stw 646408	Breeding material
+1309753	Flameks*4//Minturki/T. timopheevii	Breeding material
+1309754	Flameks*3/H44-24	Breeding material
+1309912	Gokuwase 2/Norin 61	Cultivar
+1311740	Gluyas Early/Rieti	Cultivar
+1311751		Uncertain improvement status
+1311755	selection from field of Bobs	Cultivar
+1311770	Gluyas Early/Darling	Cultivar
+1311775		Breeding material
+1312342	selection from Gabo	Cultivar
+1312712	Sibiryachka 2/Saratov 29	Cultivar
+1312715	selection from Leningradka	Cultivar
+1312793		Uncertain improvement status
+1313037		Uncertain improvement status
+1313038	Calidad/4/21931/Chapinga 53//2*Gabo/3/5667/5/Ciano 67/Noroeste 66	Breeding material
+1316032	Bezostaya 1/?	Cultivar
+1318154	HY 633/NP 842	Cultivar
+1318156		Cultivar
+1318175		Breeding material
+1318269		Uncertain improvement status
+1322332	Danchikomugi/Chugoku 81	Cultivar
+1323466		Uncertain improvement status
+1323573	Super/1862	Cultivar
+1323707	selection from Trnava landrace	Cultivar
+1323710	selection from landrace Domousnice-Libansko	Cultivar
+1323712	Cimbals/Saumur 	Cultivar
+1323713	Polska Ostka/Koga 	Cultivar
+1323716	Peko/Uhreticka 400	Cultivar
+1323734		Cultivar
+1324360		Uncertain improvement status
+1324365		Breeding material
+1324740		Landrace
+1325728	selection from Pavon	Breeding material
+1329923	Bage/4/Thatcher/3/Frontana//Kenya 58/Newthatch	Cultivar
+1330068		Breeding material
+1333897	Zhana-Kyzyl/Slava 	Cultivar
+1333898	Saratovskaya 29/Zolotaya-Volna 	Cultivar
+1333901	Saratovskaya 29/Caesium 111 	Cultivar
+1333902	Veselopodolyanskaja 610/Saratovskaja 29	Cultivar
+1333903	selection from Shortandinka	Cultivar
+1333904	winter wheat/Akmolinka 1	Cultivar
+1333905	Saratovskaja 36/Lutescens 38	Cultivar
+1340630		Landrace
+1340632		Landrace
+1340690		Landrace
+1340714		Landrace
+1342289		Uncertain improvement status
+1342320		Cultivar
+1344230		Breeding material
+1344234		Breeding material
+1357047		Uncertain improvement status
+1363916		Landrace
+1363924		Landrace
+1363926		Landrace
+1363938		Landrace
+1363941		Landrace
+1363950		Landrace
+1363953		Landrace
+1363998		Landrace
+1364008		Landrace
+1364016		Landrace
+1364021		Landrace
+1364029		Landrace
+1365820		Landrace
+1373436		Landrace
+1374605	F1518 (Mexico)//Kafue/Mara 13D 	Cultivar
+1374607	Chancellor/Kentucky	Cultivar
+1374636		Cultivar
+1374738		Landrace
+1375414	Selection from PI 478497	Landrace
+1375416	Selection from PI 478498	Landrace
+1376655		Landrace
+1381091	Tobari 66/Ciano F67//Correcaminos/Super X/3/Azteca 67/4/Yecora 70	Cultivar
+1385335		Uncertain improvement status
+1389037	IIl8889/Trapper//CO652643/3/Sonora/Trapper//Warrior 	Cultivar
+1389863		Uncertain improvement status
+1394903		Landrace
+1394907		Landrace
+1397563		Cultivar
+1403321	Bluebird Tordo//Lachish/3/Nursi/T. dicoccoides (strain G-25)	Breeding material
+1403323	Nursi/T. dicoccoides (strain G-25)//Merav/3/V378-751	Breeding material
+1403324	Nursi/T. dicoccoides (strain G-25)//708-26/3/Cajeme-71	Breeding material
+1403332	Nursi/T. dicoccoides (strain G-25)//Merav/3/V378-751	Breeding material
+1413584	BW15(Manitou/Tobari 66)/BW517(Carazinho/CT 763//Atlas 66/CT 262	Cultivar
+1413947	Orofen/3/Yaktana 54//Norin 10/Brevor/4/Lerma Rojo/5/Menflo/6/Spring Wheat 467/Gabo//Lerma/3/Vogel 9052	Breeding material
+1414292	Ciano sib//Sonora 64/Klein Rendidor/3/8156 = II23584	Breeding material
+1414293	Ciano sib//Sonora 64/Klein Rendidor/3/8156 = II23584	Breeding material
+1414319	Ariano 66/Bobito sib	Breeding material
+1414349	Supremo//Kenya/Yaqui/3/Frocor	Breeding material
+1414351	Yaqui 53/3/Frocor/Frontana/Yaqui	Breeding material
+1414354	Rio Negro/2*Bonza//Bonza 63 sib	Breeding material
+1414357	Thatcher/2*Kenya 58//Bonza	Breeding material
+1414390	Frontana/Kenya 58/Newthatch (II-5--18)/3/908/Frontana (P 14-1H-6H-2H)	Breeding material
+1414420	Frontana/Yaqui//Thatcher/3/Licoyan/4/Kenya AD/Gabo/5/Frontana/Yaqui	Breeding material
+1414423	Chinese 166/Peko/Jufy I	Breeding material
+1414424	Salles//McMurachy/Mayo/3/3*Bonza	Breeding material
+1414439	Giza 139/Gabo	Breeding material
+1414448	ND 373*3/Giza Hegazy Ahmer	Breeding material
+1414516	Rulofen/4/Frocor/Kenya//Newthatch/3/Norin 10/Brevor	Breeding material
+1414548	Platifen/Toquifen sib	Breeding material
+1414565	Newthatch/3*Bonza	Breeding material
+1414598	ND 480//Polk/Wisconsin 261	Breeding material
+1414619	Yaqui 53//Norin 10/Brevor/3/2*Lerma Rojo/5/Orofen/4/Yaktana 54//Norin 10/Brevor/3/Lerma Rojo/6/Menflo	Breeding material
+1414647	MB/SR	Breeding material
+1414656		Breeding material
+1414682	Narino 59//Penjamo 62/Gabo/3/Tezanos Pintos Precoz/Knott #2/4/Calidad	Breeding material
+1414715	Andifen/Yafen	Breeding material
+1414728	Naofen//21943/Chapingo 53/3/Yaqui 50	Breeding material
+1414733	PF 72640/PF 7326//PF 7065/Alondra sib	Breeding material
+1414741	ND 457*3/T.durum//Estanzuela Dakuro	Breeding material
+1414778	Pitic 62/1153-526//Sonora 64	Breeding material
+1414840	Timgalen//Bajio/Inia	Breeding material
+1414844	Tezanos Pintos Precoz/Sonora 64A//MUOD/Azteca	Breeding material
+1414848	Kaw/CI 13523 (Agent)/5/Yaktana 54//Norin 10/Brevor 21-1C/3/Magliesberg/Mentana//Quaderna/Gabo/4/Sonora 64//Tezanos Pintos Precoz/Yaqui 54	Breeding material
+1414873	Kavkaz/Tanori F71//Tito sib	Breeding material
+1414969	Kentana 48/3/Maria Escobar/Supresa/Gabo/4/CI 13632	Breeding material
+1415009	Carifen 422/Anahuac	Breeding material
+1415023	Kavkaz/Saric 70	Breeding material
+1415029	Carazinho/Ron	Breeding material
+1415043	Sonora 64*2/Tezanos Pintos Precoz/Yaqui 54/3/Andes 64A/2*Federation//Yaqui/Kentana	Cultivar
+1415044	Hork/Kalyansona	Breeding material
+1415092	Kavkaz/HD 2009	Breeding material
+1415130	K 6901495/(S 27)K 6701471	Breeding material
+1415201	ND 487/Waldron//ND 521/3/RL 4299	Breeding material
+1415218	SA 3423/Pat 7285	Breeding material
+1415282	Neepawa*5//TER/2*Thatcher/3/RL 4409	Breeding material
+1415286	Butte*2/ND 507	Breeding material
+1415307	Bluebird/Norteno 67//Kalyansona 227/Bluebird	Breeding material
+1415309	C 18155/2*Narino 59	Breeding material
+1415310	Ciano sib/Inia//Lilifen/3/Tobari//Klein Petiso/Rafaela	Breeding material
+1415311	Tecolote/4/Laramie//Federation/Kenya 350AD 9C2/3/Gabo//Federation/Kenya 350 AD 9C2/3/Gabo	Breeding material
+1415312	Blueboy//Tobari 66/8156	Breeding material
+1415313	Kavkaz/4/Chile/Inia/3/Ciano//El Goucho/Sonora	Breeding material
+1415314	Cajeme//Tezanos Pintos Precoz/2*Sonora	Breeding material
+1415315	Ciano/Sonora 64/3/Blueboy//Yaqui 50 Enano/3*Kalyansona	Breeding material
+1415316	Blueboy sib/Tobari 66	Breeding material
+1415317	Carthage//Kalyansona/Blueboy	Breeding material
+1415321	Mexican Bluestem*2//Inia sib/Napoyo/4/Noroeste 66/Bluebird//Ciano/3/Nadadores 63/Chris sib/5/Siete Cerros	Breeding material
+1415322	Bobiro sib//Bluebird/Kalyansona	Breeding material
+1415434	S 8/Toropi	Cultivar
+1415468	Sicco/Sandown (YR 14)	Cultivar
+1415488	Aurora//Kalyansona/Bluebird/3/Woodpecker sib = CM33203	Breeding material
+1415493	Aurora//Kalyansona/Bluebird/3/Woodpecker sib = CM33203	Breeding material
+1420147		Landrace
+1420214		Uncertain improvement status
+1420216		Landrace
+1420218		Landrace
+1420220		Landrace
+1420246		Uncertain improvement status
+1420254		Landrace
+1420256		Uncertain improvement status
+1420262		Landrace
+1420297		Landrace
+1420376		Uncertain improvement status
+1427003		Landrace
+1427006		Uncertain improvement status
+1427043		Landrace
+1427052		Landrace
+1427191		Landrace
+1427194		Landrace
+1427196		Landrace
+1427199		Landrace
+1427214		Landrace
+1427220		Landrace
+1427827		Breeding material
+1429233		Landrace
+1429249		Landrace
+1429302		Landrace
+1429308		Landrace
+1429326		Landrace
+1429335		Landrace
+1429342		Landrace
+1429353		Landrace
+1429354		Landrace
+1429357		Landrace
+1429367		Landrace
+1429369		Landrace
+1429384		Landrace
+1429397		Landrace
+1429412		Landrace
+1437597		Landrace
+1460193		Landrace
+1460194		Landrace
+1460206		Landrace
+1467601	Kazakhstanskaja 126/Tascan	Cultivar
+1467603	Marquis/Lutescens 644	Cultivar
+1467607	Fronteira/Kollektivnaya 	Cultivar
+1467616		Cultivar
+1467621		Cultivar
+1467701	fraternal selection	Cultivar
+1467765		Landrace
+1467793		Landrace
+1469220	Kavkaz/Buho sib//Kalyansona/Bluebird	Breeding material
+1469221	IAS58/IAS55//Alondra sib/3/MaringaG/4/Alondra sib/IAS58.103A/Alondra sib	Breeding material
+1469291		Breeding material
+1469315		Uncertain improvement status
+1469317		Uncertain improvement status
+1469318		Uncertain improvement status
+1469319		Uncertain improvement status
+1469321		Uncertain improvement status
+1469327		Uncertain improvement status
+1469472	Neepawa*9/S-615	Breeding material
+1471610		Landrace
+1472726		Landrace
+1472741		Landrace
+1472748		Landrace
+1478641	Preston sel./red durum//Preston sel. 	Cultivar
+1478652		Cultivar
+1478665	Frontana//Kenya 58/Newthatch/Gabo 56	Cultivar
+1478676	Girua/Purplestraw	Cultivar
+1478686	Newthatch/Aguilera 4//Thatcher/Mentana	Cultivar
+1478688	Gabo//Kenya//General Urquiza	Cultivar
+1479363	Tugela*4/SA1684 	Cultivar
+1479378	Bezostaya 1//Betta/Line W 	Cultivar
+1479473	Sarrubra/Skala//Skala	Cultivar
+1516370	Neepawa/Columbus//BW90	Cultivar
+1529299	BW 536/85407	Genetic material
+1529305	HY 377/SC8021V2//L8474D1	Genetic material
+1537290	HY358/M82-2102//2*HY320/3/W8600	Breeding material
+1580210	Altar 84/Ae. tauschii (191)//Opata M85	Breeding material
+1584422	CARGL62//TJB368-251/Buckbuck	Breeding material
+1584490	Pitic 62/Funo*2//Valdivia/3/CO723595	Breeding material
+1584493	Pitic 62/Funo*2//Valdivia/3/CO723595	Breeding material
+1584640	61.01/BN3447//Weaver	Breeding material
+1599567	Seri M82/Pavon F76//8*Seri M82	Breeding material
+1599581	Seri M82/Pavon F76//8*Seri M82	Breeding material
+1599610	Croc 1/Ae. tauschii(213)//Papago M86	Breeding material
+1599619	Altar/Ae. tauschii(224)//2*Yaco	Breeding material
+1601423	Ciano T79/Glennson M81//8*Ciano T79	Breeding material
+1601426	Opata M85/Glennson M81//8*Opata M85	Breeding material
+1601428	Ocoroni F86/Glennson M81/8*Ocoroni F86	Breeding material
+1601449	Fink/Pavon 76//8*Fink	Breeding material
+1601451	Kauz/Pavon 76//8* Kauz	Breeding material
+1618825	KY87C-42-8-5/Collin//AC Majestic/3/Kanto 107/BaiHuo.	Breeding material
+1622028		Landrace
+1622390		Landrace
+1622404		Landrace
+1622416		Landrace
+1622465		Landrace
+1622493		Landrace
+1622530		Landrace
+1622591		Landrace
+1622652		Landrace
+1622755		Landrace
+1622835		Landrace
+1622837		Landrace
+1622847		Landrace
+1622966		Landrace
+1622976		Landrace
+1622977		Landrace
+1623025		Landrace
+1623117		Landrace
+1623172		Landrace
+1623305		Landrace
+1623388		Landrace
+1623396		Landrace
+1623404		Landrace
+1623421		Landrace
+1623432		Landrace
+1623485		Landrace
+1623512		Landrace
+1623542		Landrace
+1623614		Landrace
+1623695		Landrace
+1623787		Landrace
+1623896		Landrace
+1623949		Landrace
+1623954		Landrace
+1623984		Landrace
+1624133		Landrace
+1624155		Landrace
+1624201		Landrace
+1624216		Landrace
+1624220		Landrace
+1624264		Landrace
+1624299		Landrace
+1624436		Landrace
+1624470		Landrace
+1624573		Landrace
+1624657		Landrace
+1624660		Landrace
+1624704		Landrace
+1624725		Landrace
+1624882		Landrace
+1624987		Landrace
+1625004		Landrace
+1625171		Landrace
+1625284		Landrace
+1626792		Landrace
+1626931		Landrace
+1627218		Landrace
+1627240		Landrace
+1630819	Cadoux//Maya 74/M2	Breeding material
+1635338	Ning 7840/Wangshuibai (Wong Su)	Breeding material
+1635341	Ning 7840/Wangshuibai (Wong Su)	Breeding material
+1640351	Suweon 185/6* Marfed	Breeding material
+1640359	Suweon 185/6* Marfed	Breeding material
+1640362	Chugoku 81/6* Marfed	Breeding material
+1653916	Karee*4/PI 262660.	Breeding material
+1663898		Cultivar
+1663901	Botanischeskaya 2/Zhnitsa	Cultivar
+1663904	Shortandinskaya 25/Lutescens 6829	Cultivar
+1663912		Cultivar
+1671798	Stephens*2/Triple Dirk VRN 3//5*Stephens	Genetic material
+1673364	Wanser*2/Triple Dirk VRN 2//5*Wanser	Breeding material
+1673367	Wanser*2/Triple Dirk VRN 2//5*Wanser	Breeding material
+1673392	PI603918*7/Yecora Rojo	Genetic material
+1674707	Daws*2/Triple Dirk VRN 1//5*Daws	Genetic material
+1686778	selection from Funo, CI14349	Breeding material
+1686801	selection from Sumai 3, PI481542	Breeding material
+1698788	Westbred 926/WA7702	Cultivar
+1699131	Lolo*6/PI603918	Breeding material
+1126672		Uncertain improvement status
