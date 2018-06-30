@@ -20,6 +20,9 @@ with open(infile) as f:
 	lis=[x.split('\t') for x in f] # list of list
 
 
-out = open("transposed_" + infile, "w")
+#out = open("transposed_" + infile, "w")
+#for x in zip(*lis): # unzip a list
+#	out.write('\t'.join(map(str,x)) + '\n')
+
 for x in zip(*lis): # unzip a list
-	out.write('\t'.join(map(str,x)) + '\n')
+	print('\t'.join(map(str,x)) + '\n')
