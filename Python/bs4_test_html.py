@@ -65,10 +65,20 @@ and they lived at the bottom of a well.</p>
 def xstr(s):
     return '' if s is None else str(s).strip()
 
+def get_trait(trait_name, traitlist, valuelist):
+	if trait_name in traitlist:
+		n = traitlist.index(trait_name)
+		value = valuelist[n - 1] # first cell is TH
+	else:
+		value = "NA"
+	return value
+
+
 def pull_grin(acc):
 	url = "https://npgsweb.ars-grin.gov/gringlobal/accessiondetail.aspx?id=" + str(acc)
 	content = urllib2.urlopen(url).read()
 	soup = BeautifulSoup(content, "lxml")
+	pinumber = soup.find_all("h1")[0].string
 	region = soup.find("th", text = "Collected from:").find_next_sibling("td").string
 	#print region
 	receive = soup.find("th", text = "NPGS received:").find_next_sibling("td").string
@@ -81,14 +91,13 @@ def pull_grin(acc):
 	## trait table
 	tt = soup.find(id = "ctl00_cphBody_tblCropTrait")
 	#print tt.find_all("tr")[1].find_all("th")
-	traits = [item.text for item in tt.find_all("tr")[1].find_all("th")]
-	if "Growth Habit" in traits:
-		n = traits.index("Growth Habit")
-		habit = tt.find_all("tr")[2].find_all("td")[n - 1].text # first cell is TH
-	else:
-		habit = "NA"
-	#print "growth habit is ", habit
-	info = [xstr(region), xstr(receive), xstr(pedigree), xstr(status), xstr(habit)]
+	allrows = tt.find_all("tr")
+	traits = [item.text for item in allrows[1].find_all("th")]
+	values = [item.text for item in allrows[2].find_all("td")]
+	habit = get_trait("Growth Habit", traits, values)
+	height = get_trait("Plant Height", traits, values)
+	## put into a list
+	info = [xstr(pinumber), str(acc), xstr(region), xstr(receive), xstr(pedigree), xstr(status), xstr(habit), xstr(height)]
 	#print info
 	info2 = '\t'.join(info)
 	#print info2
@@ -111,13 +120,13 @@ for line in open(inputfile, "r"):
 
 # Outfile
 out = open(outputfile, "w")
-out.write('\t'.join(["Region", "Receive_date", "Pedigree", "Status", "Growth_habit"]) + "\n")
+out.write('\t'.join(["Accession", "AccessionID", "Region", "Receive_date", "Pedigree", "Status", "Growth_habit", "Plant_height"]) + "\n")
 
 for id in accid:
 	info = pull_grin(id)
 	out.write(info + "\n")
 
-
+print "Finished successfully!\n"
 
 
 
