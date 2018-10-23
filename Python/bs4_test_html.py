@@ -87,7 +87,7 @@ def pull_grin(acc):
 		habit = tt.find_all("tr")[2].find_all("td")[n - 1].text # first cell is TH
 	else:
 		habit = "NA"
-	print "growth habit is ", habit
+	#print "growth habit is ", habit
 	info = [xstr(region), xstr(receive), xstr(pedigree), xstr(status), xstr(habit)]
 	#print info
 	info2 = '\t'.join(info)
@@ -95,11 +95,27 @@ def pull_grin(acc):
 	return info2
 
 
-print pull_grin(1170349)
+#print pull_grin(1170349)
+#print pull_grin(1427114)
 
-print pull_grin(1427114)
+# change the input and output file names here
+inputfile = "rust875ID_test.txt"
+outputfile = "testout.txt"
 
 
+accid = []
+for line in open(inputfile, "r"):
+	line = line.strip()
+	if line:
+		accid.append(int(line))
+
+# Outfile
+out = open(outputfile, "w")
+out.write('\t'.join(["Region", "Receive_date", "Pedigree", "Status", "Growth_habit"]) + "\n")
+
+for id in accid:
+	info = pull_grin(id)
+	out.write(info + "\n")
 
 
 
