@@ -27,7 +27,7 @@ import sys
 
 # get reverse complement sequence
 def to_fasta(primer): # format: primer_name sequence
-	seq_name, seq = line.split()
+	seq_name, seq = primer.split()
 	fa = ">" + seq_name + "\n" + seq
 	return fa
 
