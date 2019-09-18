@@ -52,6 +52,11 @@ func main () {
 	for scanner.Scan() {
 		//fmt.Println(scanner.Text())
 		line := scanner.Text() // s.TrimSuffix(scanner.Text(), "\n")
+		if s.HasPrefix(line, "#CHROM") {
+			ll := s.Split(line, "\t")
+			outline := s.Join(append(ll[0:5], ll[(geno_starts - 1):]...), "\t")
+			fmt.Fprintln(outfile, outline)
+		}
 		if line != "" && !s.HasPrefix(line, "#") {
 			ll := s.Split(line, "\t")
 			GTs := ll[(geno_starts - 1):] // all GT calls
