@@ -1,16 +1,22 @@
 // skip checking comments after the header, but did not increase the speed.
 // seems if statement is okay.
+// 2. use bufio.NewWriter: doubled the speed
+// 3. minor editing: not sure whether increase the speed or not.
 
 package main
 import (
     "bufio"
     "fmt"
 	"os"
-	"log"
 )
 import s "strings"
 
 //var p = fmt.Println
+func check(e error) {
+    if e != nil {
+        panic(e)
+    }
+}
 
 func gt2snp (allele_list []string , gt string) string {
 	// suppose unphased calls, that is separated by "/", not by "|"
@@ -38,12 +44,10 @@ func main () {
 	geno_starts := 10 // 10th column starts the genotype information
 
 	infile, err := os.Open(input)
-	if err != nil {
-		log.Fatal(err)
-	}
+	check(err)
 
 	outfile, err := os.Create(output)
-	//w := bufio.NewWriter(outfile)
+	check(err)
 
 	defer infile.Close()
 	defer outfile.Close()
@@ -67,9 +71,10 @@ func main () {
 		line := scanner.Text()
 		ll := s.Split(line, "\t")
 		GTs := ll[(geno_starts - 1):] // all GT calls
-		ref := []string{ll[3]}
-		alt := s.Split(ll[4], ",") // there may be more than one alternative alleles
-		alleles := append(ref,  alt...) // this way, 0 will be ref, and 1, 2 ... will be alternative allele
+		//ref := []string{ll[3]}
+		//alt := s.Split(ll[4], ",") // there may be more than one alternative alleles
+		//alleles := append(ref,  alt...) // this way, 0 will be ref, and 1, 2 ... will be alternative allele
+		alleles := s.Split(ll[3] + "," + ll[4], ",")
 		SNPs := make([]string, len(GTs))
 		for pos, num := range GTs {
 			SNPs[pos] = gt2snp(alleles, num)

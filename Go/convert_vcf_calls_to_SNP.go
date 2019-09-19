@@ -43,7 +43,10 @@ func main () {
 	}
 
 	outfile, err := os.Create(output)
-	//w := bufio.NewWriter(outfile)
+	if err != nil {
+		log.Fatal(err)
+	}
+	w := bufio.NewWriter(outfile)
 
 	defer infile.Close()
 	defer outfile.Close()
@@ -55,7 +58,9 @@ func main () {
 		if s.HasPrefix(line, "#CHROM") {
 			ll := s.Split(line, "\t")
 			outline := s.Join(append(ll[0:5], ll[(geno_starts - 1):]...), "\t")
-			fmt.Fprintln(outfile, outline)
+			//fmt.Fprintln(outfile, outline)
+			w.WriteString(outline)
+			w.WriteString("\n")
 		}
 		if line != "" && !s.HasPrefix(line, "#") {
 			ll := s.Split(line, "\t")
@@ -69,7 +74,10 @@ func main () {
 			}
 			outline := s.Join(append(ll[0:5], SNPs...), "\t")
 			//n4, err := w.WriteString("buffered\n")
-			fmt.Fprintln(outfile, outline)
+			//fmt.Fprintln(outfile, outline)
+			w.WriteString(outline)
+			w.WriteString("\n")
 		}
 	}
+	w.Flush()
 }
