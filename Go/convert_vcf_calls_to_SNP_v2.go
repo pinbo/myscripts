@@ -49,13 +49,16 @@ func main () {
 	defer outfile.Close()
 
 	scanner := bufio.NewScanner(infile)
+	w := bufio.NewWriter(outfile)
+
 	for scanner.Scan() {
 		//fmt.Println(scanner.Text())
 		line := scanner.Text() // s.TrimSuffix(scanner.Text(), "\n")
 		if s.HasPrefix(line, "#CHROM") {
 			ll := s.Split(line, "\t")
 			outline := s.Join(append(ll[0:5], ll[(geno_starts - 1):]...), "\t")
-			fmt.Fprintln(outfile, outline)
+			//fmt.Fprintln(outfile, outline)
+			w.WriteString(outline + "\n")
 			break
 		}
 	}
@@ -72,7 +75,8 @@ func main () {
 			SNPs[pos] = gt2snp(alleles, num)
 		}
 		outline := s.Join(append(ll[0:5], SNPs...), "\t")
-		//n4, err := w.WriteString("buffered\n")
-		fmt.Fprintln(outfile, outline)
+		//fmt.Fprintln(outfile, outline)
+		w.WriteString(outline + "\n")
 	}
+	w.Flush()
 }
