@@ -2,39 +2,19 @@
 // seems if statement is okay.
 // 2. use bufio.NewWriter: doubled the speed
 // 3. minor editing: not sure whether increase the speed or not.
+// 4. edited gt2snp, increased the speed a lot.
 
 package main
 import (
     "bufio"
     "fmt"
-	"os"
+    "os"
+    s "strings"
+    "strconv"
 )
-import s "strings"
-
-//var p = fmt.Println
-func check(e error) {
-    if e != nil {
-        panic(e)
-    }
-}
-
-func gt2snp (allele_list []string , gt string) string {
-	// suppose unphased calls, that is separated by "/", not by "|"
-	// only GT fields with 4 types: 0/0, 0/1, 1/1, or ./.
-	switch gt {
-	case "0/0":
-		return allele_list[0]
-	case "1/1":
-		return allele_list[1]
-	case "0/1":
-		return "H"
-	case "./.":
-		return "N"
-	}
-	return gt // in case other cases, for example 2/2 when more than 2 alleles
-}
 
 func main () {
+	// my program starts
 	if len(os.Args) < 3 {
 		fmt.Println("Please provide 2 arguments: input vcf file, output file name")
 		os.Exit(1)
@@ -57,11 +37,10 @@ func main () {
 
 	for scanner.Scan() {
 		//fmt.Println(scanner.Text())
-		line := scanner.Text() // s.TrimSuffix(scanner.Text(), "\n")
+		line := scanner.Text() // "\n" is already trimmed
 		if s.HasPrefix(line, "#CHROM") {
 			ll := s.Split(line, "\t")
 			outline := s.Join(append(ll[0:5], ll[(geno_starts - 1):]...), "\t")
-			//fmt.Fprintln(outfile, outline)
 			w.WriteString(outline + "\n")
 			break
 		}
@@ -71,17 +50,45 @@ func main () {
 		line := scanner.Text()
 		ll := s.Split(line, "\t")
 		GTs := ll[(geno_starts - 1):] // all GT calls
-		//ref := []string{ll[3]}
-		//alt := s.Split(ll[4], ",") // there may be more than one alternative alleles
-		//alleles := append(ref,  alt...) // this way, 0 will be ref, and 1, 2 ... will be alternative allele
-		alleles := s.Split(ll[3] + "," + ll[4], ",")
+		ref := ll[3] // reference allele
+		alt := ll[4] // alternative allele(s)
 		SNPs := make([]string, len(GTs))
-		for pos, num := range GTs {
-			SNPs[pos] = gt2snp(alleles, num)
+		for pos, gt := range GTs {
+			SNPs[pos] = gt2snpv2(ref, alt, gt)
 		}
 		outline := s.Join(append(ll[0:5], SNPs...), "\t")
-		//fmt.Fprintln(outfile, outline)
 		w.WriteString(outline + "\n")
 	}
 	w.Flush()
+}
+
+func check(e error) {
+    if e != nil {
+        panic(e)
+    }
+}
+
+func gt2snpv2 (ref string , alt string, gt string) string {
+	// suppose unphased calls, that is separated by "/", not by "|"
+	switch gt {
+	case "0/0":
+		return ref
+	case "1/1":
+		return alt
+	case "0/1":
+		return "H"
+	case "./.":
+		return "N"
+	default: // if more than 2 alleles
+		alleles := s.Split(alt, ",")
+		ll := s.Split(gt, "/")
+		a := ll[0]
+		b := ll[1]
+		if a == b {// homozygous
+			i, _ := strconv.Atoi(a)
+			return alleles[i-1]
+		} else {
+			return "H"
+		}
+	}
 }
