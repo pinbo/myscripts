@@ -34,7 +34,8 @@ func main () {
 
 	scanner := bufio.NewScanner(infile)
 	w := bufio.NewWriter(outfile)
-
+	
+	// parse commments
 	for scanner.Scan() {
 		//fmt.Println(scanner.Text())
 		line := scanner.Text() // "\n" is already trimmed
@@ -46,10 +47,17 @@ func main () {
 		}
 	}
 
+	// parse the rest	
 	for scanner.Scan() {
 		line := scanner.Text()
 		ll := s.Split(line, "\t")
-		GTs := ll[(geno_starts - 1):] // all GT calls
+		format := ll[8]
+		GTs := ll[(geno_starts - 1):]
+		if (format != "GT"){
+			for pos, gt := range GTs {
+				GTs[pos] = s.Split(gt, ":")[0] // first field is always GT
+			}
+		}
 		ref := ll[3] // reference allele
 		alt := ll[4] // alternative allele(s)
 		SNPs := make([]string, len(GTs))
