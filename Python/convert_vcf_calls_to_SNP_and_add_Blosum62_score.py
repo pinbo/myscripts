@@ -18,12 +18,18 @@
 #  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
 #  MA 02110-1301, USA.
 #
+# Before running this script
+## extract effects and subsets from a vcf file
+# cat Chen-confidence-region-subset.vcf | java -jar ../SnpSift.jar filter "( QUAL > 100 )" | ../scripts/vcfEffOnePerLine.pl | java -jar ../SnpSift.jar extractFields - CHROM POS REF ALT QUAL DP MQ "EFFECT" "GENE" "FEATUREID" "IMPACT" "HGVS_P" "GEN[*]" > Chen-confidence-region-subset-Qual100-SNPeff.txt
+## convert GT to SNP table
+# convert_vcf_calls_to_SNP_and_add_Blosum62_score.py Chen-confidence-region-subset-Qual100-SNPeff.txt Chen-confidence-region-subset-Qual100-SNPeff-converted.txt
 
 # example
-# ./add_Blosum62_score.py input_file output_file
+# ./convert_vcf_calls_to_SNP_and_add_Blosum62_score.py input_file output_file
 
 ### Imported
 import sys
+import re
 
 AA3letter = {
 	"I" : "Ile",
@@ -46,7 +52,7 @@ AA3letter = {
 	"D" : "Asp",
 	"K" : "Lys",
 	"R" : "Arg",
-	"*" : "Stop"
+	"*" : "*"
 }
 AA3letter2 = {
 	"Ile" : "I",
@@ -69,7 +75,7 @@ AA3letter2 = {
 	"Asp" : "D",
 	"Lys" : "K",
 	"Arg" : "R",
-	"Stop" : "*"
+	"*" : "*"
 }
 # BLOSUM62
 B62header = ["C", "S", "T", "P", "A", "G", "N", "D", "E", "Q", "H", "R", "K", "M", "I", "L", "V", "F", "Y", "W", "*"]
@@ -101,8 +107,8 @@ B62table = [[9, -1, -1, -3, 0, -3, -3, -3, -4, -3, -3, -3, -3, -1, -1, -1, -1, -
 in_file = sys.argv[1]
 out_file = sys.argv[2]
 out = open(out_file, "w")
-log = open("log.txt", "w")
-header = ["CHROM", "POS", "REF", "ALT", "QUAL", "DP", "MQ", "ANN[*].EFFECT", "ANN[*].GENE", "ANN[*].FEATUREID", "ANN[*].IMPACT", "ANN[*].HGVS_P", "Blosum62", "2045A", "AvocetS", "Bakahtawar94", "Berkut", "CAP2", "D447-DW1", "DD", "DV92", "Excalibur", "G25-Yr15", "G3116", "Gredho", "Hahn-RW", "Inayama", "Kronos0", "Kronos280-1-Yr15", "LR23", "LR3", "Langdon", "PBW343", "PI347731", "PI503555", "PI519805", "Pavon", "RAC875", "RIL143", "RSI5", "Rusty", "Svevo", "UC1036", "UC1419", "Zavitan"]
+# this header is only Dubcovsky lab lines
+header = ["CHROM", "POS", "REF", "ALT", "QUAL", "DP", "MQ", "EFFECT", "GENE", "FEATUREID", "IMPACT", "HGVS_P", "AA_change", "Blosum62", "2045A", "AvocetS", "Bakahtawar94", "Berkut", "CAP2", "D447-DW1", "DD", "DV92", "Excalibur", "G25-Yr15", "G3116", "Gredho", "Hahn-RW", "Inayama", "Kronos0", "Kronos280-1-Yr15", "LR23", "LR3", "Langdon", "PBW343", "PI347731", "PI503555", "PI519805", "Pavon", "RAC875", "RIL143", "RSI5", "Rusty", "Svevo", "UC1036", "UC1419", "Zavitan"]
 
 out.write("\t".join(header) + "\n")
 
@@ -121,28 +127,28 @@ def gt2snp(allele_list, gt):
 with open(in_file) as file_one:
 	header_line = next(file_one)
 	for line in file_one:
-		log.write(line)
+		# log.write(line)
 		line = line.strip()
 		# calculate BLOSUM62 score
 		if line:
 			ll = line.split("\t")
-			if ll[7] == "missense_variant":
-				AAchange = ll[11] # p.Arg25His
-				ref_AA = AAchange[2:5]
-				alt_AA = AAchange[-3:]
-				#pos = AAchange[5:-3]
-				B62 = B62table[B62header2.index(ref_AA)][B62header2.index(alt_AA)]
-				#out.write(line + "\t" + str(B62) + "\n")
+			if ll[11]:
+				AAchange = ll[11].lstrip("p.") # p.Arg25His
+				ref_AA, pos, alt_AA = re.split(r'(\d+)', AAchange)
+				AAsingle = AA3letter2[ref_AA] + pos + AA3letter2[alt_AA]
+				if ll[7] == "missense_variant":
+					B62 = B62table[B62header2.index(ref_AA)][B62header2.index(alt_AA)]
+				else:
+					B62 = ""
 			else:
-				#out.write(line + "\n")
-				B62 = "NA"
+				B62 = ""
+				AAsingle = ""
 		# convert GT to SNPs
-		GTs = ll[12:] # all GT calls
+		GTs = [x.split(":")[0] for x in ll[12:]]
 		ref = ll[2]
 		alt = ll[3].split(",") # there may be more than one alternative alleles
 		alleles = [ref] + alt # this way, 0 will be ref, and 1, 2 ... will be alternative allele
 		SNPs = [gt2snp(alleles, x) for x in GTs]
-		out.write("\t".join(ll[0:12] + [str(B62)] + SNPs) + "\n")
+		out.write("\t".join(ll[0:12] + [AAsingle, str(B62)] + SNPs) + "\n")
 
 out.close()
-log.close()
