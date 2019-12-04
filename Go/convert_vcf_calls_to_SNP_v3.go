@@ -40,7 +40,7 @@ func main () {
 		line := scanner.Text() // "\n" is already trimmed
 		if s.HasPrefix(line, "#CHROM") {
 			ll := s.Split(line, "\t")
-			outline := s.Join(append(ll[0:5], ll[9:]...), "\t")
+			outline := s.Join(append(ll[0:6], ll[9:]...), "\t")
 			w.WriteString(outline + "\n")
 			break
 		}
@@ -112,7 +112,7 @@ func parse1 (line string) string {
 	for pos, gt := range GTs {
 		SNPs[pos] = gt2snpv2(ref, alt, gt)
 	}
-	outline := s.Join(append(ll[0:5], SNPs...), "\t")
+	outline := s.Join(append(ll[0:6], SNPs...), "\t")
 	return outline
 }
 
@@ -129,6 +129,6 @@ func parse2 (line string) string {
 	for pos, gt := range GTs {
 		SNPs[pos] = gt2snpv2(ref, alt, gt)
 	}
-	outline := s.Join(append(ll[0:5], SNPs...), "\t")
+	outline := s.Join(append(ll[0:6], SNPs...), "\t")
 	return outline
 }
