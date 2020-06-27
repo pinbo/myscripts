@@ -21,17 +21,19 @@ func main () {
 	}
 	input := os.Args[1]
 	output := os.Args[2]
-
-	infile, err := os.Open(input)
-	check(err)
-
+	//info, _ := os.Stdin.Stat()
+	var scanner *bufio.Scanner
+	if input == "-" {
+		scanner = bufio.NewScanner(os.Stdin)
+	} else {
+		infile, err := os.Open(input)
+		check(err)
+		defer infile.Close()
+		scanner = bufio.NewScanner(os.Stdin)
+	}
 	outfile, err := os.Create(output)
 	check(err)
-
-	defer infile.Close()
 	defer outfile.Close()
-
-	scanner := bufio.NewScanner(infile)
 	w := bufio.NewWriter(outfile)
 	
 	// parse commments
