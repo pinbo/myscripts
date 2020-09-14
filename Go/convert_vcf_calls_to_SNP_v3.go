@@ -29,7 +29,7 @@ func main () {
 		infile, err := os.Open(input)
 		check(err)
 		defer infile.Close()
-		scanner = bufio.NewScanner(os.Stdin)
+		scanner = bufio.NewScanner(infile)
 	}
 	outfile, err := os.Create(output)
 	check(err)
