@@ -46,14 +46,14 @@ class sample(object):
 		self.R2 = [] # 4 lines of read2
 
 # function to process barcode file : 3 columns: sample name, left barcode, right barcode
-def get_barcode(infile):
+def get_barcode(infile, barcodeLenToCheck): # barcodeLenToCheck: only use the right barcodeLenToCheck bp to check matches
 	barcodes = {} # dictionary for alignment
 	with open(infile) as file_one:
 		for line in file_one:
 			line = line.strip()
 			if line:
 				name, leftbarcode, rightbarcode = line.split()
-				barcodes[leftbarcode[-5:] + "-" + rightbarcode[-5:]] = name
+				barcodes[leftbarcode[-barcodeLenToCheck:] + "-" + rightbarcode[-barcodeLenToCheck:]] = name
 	return barcodes
 
 ## arguments
@@ -61,17 +61,19 @@ barcodeFile = sys.argv[1] # 3 columns: sample name, left barcode, right barcode
 fastqFile = sys.argv[2] # fastq file: both R1 and R2 are in the same file next to each other
 
 ## demultiplex
-dictBarcode = get_barcode(barcodeFile)
-dictSample = {}
+# I found the sequencing output sometimes has incomplete barcode.
+# The right 5 bps are already unique for the random 8-bp barcodes I designed
+# so I only use the right 5 bp here
+barcodeLenToCheck = 8 # change here to try different length 5-8
+dictBarcode = get_barcode(barcodeFile, barcodeLenToCheck)
+
+dictSample = {} # dictionary of sample reads R1 and R2
 n1 = 0
 n2 = 1
 sample_name = ""
 leftAdapter  = "TCCTCT" # random_adapter_F TCCTCTGTCACGGAAGCG
 rightAdapter = "TTTAGC" # random_adapter_R TTTAGCCTCCCCACCGAC
-# I found the sequencing output sometimes has incomplete barcode.
-# The right 5 bps are already unique for the random 8-bp barcodes I designed
-# so I only use the right 5 bp here
-barcodeLenToCheck = 5 
+
 with open(fastqFile) as file_one:
 	for line in file_one:
 		line = line.strip()
