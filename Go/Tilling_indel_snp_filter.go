@@ -1,8 +1,10 @@
-// skip checking comments after the header, but did not increase the speed.
-// seems if statement is okay.
-// 2. use bufio.NewWriter: doubled the speed
-// 3. minor editing: not sure whether increase the speed or not.
-// 4. edited gt2snp, increased the speed a lot.
+// Writen by Junli Zhang, zhjl86@gmail.com, 2020-09-24
+// extract SNPs and indels meet a certain criteria from the Tilling GATK vcf output
+// build the app: go build Tilling_indel_snp_filter.go
+// get help: ./Tilling_indel_snp_filter -h
+// usage example: 
+// zcat mapped_PC69PC70.vcf.gz | ./Tilling_indel_snp_filter -i - -minhet 5 -minhom 3 -o filterd_variants_het5hom3_PC69PC70.tsv
+
 
 package main
 import (
@@ -15,18 +17,6 @@ import (
 )
 
 func main () {
-	// my program starts
-	//if len(os.Args) < 3 {
-	//	fmt.Println("Please provide 2 arguments: input vcf file, output file name")
-	//	os.Exit(1)
-	//}
-	//input := os.Args[1]
-	//output := os.Args[2]
-	//mincov := 1
-	//minhom := 2
-	//minhet := 3
-	//minhetper := 0.2
-	//minlibs := 10 // minimum libs with good coverage
 	input := flag.String("i", "example.vcf", "input vcf file name")
 	output := flag.String("o", "filterd_variants.tsv", "output file name")
 	minhom := flag.Int("minhom", 2, "Minimum coverage for consideration of homozygous variants")
