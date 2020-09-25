@@ -24,6 +24,7 @@ func main () {
 	minhetper := flag.Float64("minhetper", 0.2, "Minimum percentage for consideration of het")
 	minlibs := flag.Int("minlibs", 10, "Minimum number of libraries covered to be considered a valid position")
 	indelonly := flag.Bool("indelonly", false, "whether to only get indels")
+	minmq := flag.Float64("minmq", 20.0, "Minimum mapping quality")
 	flag.Parse()
 
 	//info, _ := os.Stdin.Stat()
@@ -67,10 +68,13 @@ func main () {
 			continue
 		}
 		infos := getInfo(ll[7])
-		// MQ := infos["MQ"] // mapping quality
-		DP := infos["DP"] // total depth
 		AN, _ := strconv.Atoi(infos["AN"]) // Total number of alleles in called genotypes
 		if AN < *minlibs * 2 {// too many missing data
+			continue
+		}
+		//MQ := infos["MQ"]
+		MQ, _ := strconv.ParseFloat(infos["MQ"], 64) // mapping quality
+		if MQ < *minmq {
 			continue
 		}
 		AC := s.Split(infos["AC"], ",") // Allele count in genotypes, for each ALT allele. Seems alternative alleles are ordered from more to less.
@@ -126,8 +130,8 @@ func main () {
 		if *indelonly && inserttype == "." {
 			continue
 		} // skip SNPs if need indels only
-
-		Geno, refDP, altDP, totalDP, nlib, nmutlib, _, _, firstMutPos := parse3(ll[9:], refKronos, altKronos)
+		DP := infos["DP"] // total depth
+		Geno, refDP, altDP, totalDP, nlib, nmutlib, _, _, firstMutPos := parse3(ll[9:], refKronos, altKronos, *minhetper)
 		if nmutlib == 1 && nlib >= *minlibs {// mutation only in one lib and at least minlibs have coverage
 			homhet := "hom"
 			if s.Contains(Geno[firstMutPos], strconv.Itoa(refKronos)) {
@@ -136,7 +140,7 @@ func main () {
 			nref := refDP[firstMutPos]
 			nalt := altDP[firstMutPos]
 			ntotal := totalDP[firstMutPos]
-			if (homhet == "hom" && ntotal >= *minhom) || (homhet == "het" && ntotal >= *minhet && float64(nalt)/float64(ntotal) >= *minhetper){
+			if (homhet == "hom" && ntotal >= *minhom) || (homhet == "het" && ntotal >= *minhet){
 				//outline := s.Join([]string{chrom, pos, ref0, alt0, MQ, DP, libNames[firstMutPos], homhet, strconv.Itoa(nref), strconv.Itoa(nalt), strconv.Itoa(nlib)}, "\t")
 				outline := s.Join([]string{chrom, pos, ll[3], DP, ref0, alt0, libNames[firstMutPos], homhet, strconv.Itoa(nref), strconv.Itoa(nalt), tt, strconv.Itoa(ntotal), strconv.Itoa(nlib), inserttype}, "\t")
 				w.WriteString(outline + "\n")
@@ -157,7 +161,7 @@ func check(e error) {
 // I just need the first 3
 // suppose only 1 alternative allele
 // only 1 sample has the mutation
-func parse3 (GTs []string, refKronos int, altKronos int) ([]string, []int, []int, []int, int, int, int, int, int) {
+func parse3 (GTs []string, refKronos int, altKronos int, minhetper float64) ([]string, []int, []int, []int, int, int, int, int, int) {
 	//ll := s.Split(line, "\t")
 	//GTs := ll[9:]
 	size := len(GTs) // number of libs
@@ -185,7 +189,7 @@ func parse3 (GTs []string, refKronos int, altKronos int) ([]string, []int, []int
 			nmissing += 1
 		} else {
 			nlib += 1
-			if s.Contains(gt, strconv.Itoa(altKronos)) {// a mutation
+			if s.Contains(gt, strconv.Itoa(altKronos)) && float64(nalt) > float64(nref + nalt) * minhetper {// a mutation
 				nmutlib += 1
 				firstMutPos = pos
 			}
