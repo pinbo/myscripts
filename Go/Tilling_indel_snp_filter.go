@@ -25,6 +25,7 @@ func main () {
 	minlibs := flag.Int("minlibs", 10, "Minimum number of libraries covered to be considered a valid position")
 	indelonly := flag.Bool("indelonly", false, "whether to only get indels")
 	minmq := flag.Float64("minmq", 20.0, "Minimum mapping quality")
+	maxmutlib := flag.Int("maxmutlib", 1, "maximum number of libaries with the mutations at a position")
 	flag.Parse()
 
 	//info, _ := os.Stdin.Stat()
@@ -96,10 +97,17 @@ func main () {
 			} 
 		} else {// two alternative alleles
 			if totalAlt == AN {// no CS ref allele
-				refKronos = 1
-				altKronos = 2
-				ref0 = altList[0]
-				alt0 = altList[1]
+				if AC[0] > AC[1] {// the big number is for the ref allele
+					refKronos = 1
+					altKronos = 2
+					ref0 = altList[0]
+					alt0 = altList[1]
+				} else {
+					refKronos = 2
+					altKronos = 1
+					ref0 = altList[1]
+					alt0 = altList[0]
+				}
 			} else { // there is 0, so 3 alleles
 				continue
 			}
@@ -132,7 +140,7 @@ func main () {
 		} // skip SNPs if need indels only
 		DP := infos["DP"] // total depth
 		Geno, refDP, altDP, totalDP, nlib, nmutlib, _, _, firstMutPos := parse3(ll[9:], refKronos, altKronos, *minhetper)
-		if nmutlib == 1 && nlib >= *minlibs {// mutation only in one lib and at least minlibs have coverage
+		if nmutlib <= *maxmutlib && nlib >= *minlibs {// mutation only in one lib and at least minlibs have coverage
 			homhet := "hom"
 			if s.Contains(Geno[firstMutPos], strconv.Itoa(refKronos)) {
 				homhet = "het"
