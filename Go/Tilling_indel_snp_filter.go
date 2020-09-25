@@ -66,9 +66,6 @@ func main () {
 		if len(altList) > 2 {// more than two alternative alleles
 			continue
 		}
-		if *indelonly && len(ref0) == len(alt0) {
-			continue
-		} // skip SNPs if need indels only
 		infos := getInfo(ll[7])
 		// MQ := infos["MQ"] // mapping quality
 		DP := infos["DP"] // total depth
@@ -103,7 +100,7 @@ func main () {
 				continue
 			}
 		}
-		tt := "" // variant type: ** is indel; else AG, TC etc
+		tt := "++" // variant type: ++ is indel; else AG, TC etc
 		inserttype := "."
 		if s.Contains(ll[4], "*"){
 			tt = "++"
@@ -126,6 +123,9 @@ func main () {
 		if tt == "++" {
 			inserttype = tt
 		}
+		if *indelonly && inserttype == "." {
+			continue
+		} // skip SNPs if need indels only
 
 		Geno, refDP, altDP, totalDP, nlib, nmutlib, _, _, firstMutPos := parse3(ll[9:], refKronos, altKronos)
 		if nmutlib == 1 && nlib >= *minlibs {// mutation only in one lib and at least minlibs have coverage
