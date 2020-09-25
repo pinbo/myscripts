@@ -31,7 +31,7 @@ func main () {
 	output := flag.String("o", "filterd_variants.tsv", "output file name")
 	minhom := flag.Int("minhom", 2, "Minimum coverage for consideration of homozygous variants")
 	minhet := flag.Int("minhet", 2, "Minimum coverage for consideration of heterozygous variants")
-	minhetper := flag.Float64("minhetper", 0.2, "Minimum percentagefor consideration of het")
+	// minhetper := flag.Float64("minhetper", 0.2, "Minimum percentage for consideration of het")
 	minlibs := flag.Int("minlibs", 10, "Minimum number of libraries covered to be considered a valid position")
 	indelonly := flag.Bool("indelonly", false, "whether to only get indels")
 	flag.Parse()
@@ -50,8 +50,8 @@ func main () {
 	check(err)
 	defer outfile.Close()
 	w := bufio.NewWriter(outfile)
-	w.WriteString("Chrom\tPos\tRef\tAlt\tMQ\tTotCov\tLib\tHo/He\tWTCov\tMACov\t#libs\n")
-	w.WriteString("Chrom\tPos\tRef\tTotCov\tWT\tMA\tLib\tHo/He\tWTCov\tMACov\tType\tLCov\t#libs\tInsertType")
+	//w.WriteString("Chrom\tPos\tRef\tAlt\tMQ\tTotCov\tLib\tHo/He\tWTCov\tMACov\t#libs\n")
+	w.WriteString("Chrom\tPos\tRef\tTotCov\tWT\tMA\tLib\tHo/He\tWTCov\tMACov\tType\tLCov\t#libs\tInsertType\n")
 	// parse commments
 	var libNames []string
 	for scanner.Scan() {
@@ -73,20 +73,69 @@ func main () {
 		chrom := ll[0]
 		pos := ll[1]
 		ref0 := ll[3] // reference allele, CS allele
-		alt0 := ll[4] // alternative allele, either Kronos allele or true mutations
-		if s.Contains(alt0, ","){
+		alt0 := ll[4] // alternative alleles, either Kronos allele or true mutations
+		altList := s.Split(alt0, ",")
+		if len(altList) > 2 {// more than two alternative alleles
 			continue
-		} // skip SNPs and multiple alts
+		}
+		// if s.Contains(alt0, ","){
+		// 	continue
+		// } // skip SNPs and multiple alts
 		//ref := ll[3] // Kronos allele
 		//alt := ll[4] // mutant
 		//format := ll[8]
 		if *indelonly && len(ref0) == len(alt0) {
 			continue
-		} // skip SNPs
+		} // skip SNPs if need indels only
 		infos := getInfo(ll[7])
-		MQ := infos["MQ"] // mapping quality
+		// MQ := infos["MQ"] // mapping quality
 		DP := infos["DP"] // total depth
-		Geno, refDP, altDP, totalDP, nlib, nmutlib, _, _, firstMutPos := parse3(ll[9:])
+		AN, _ := strconv.Atoi(infos["AN"]) // Total number of alleles in called genotypes
+		if AN < *minlibs * 2 {// too many missing data
+			continue
+		}
+		AC := s.Split(infos["AC"], ",") // Allele count in genotypes, for each ALT allele. Seems alternative alleles are ordered from more to less.
+		totalAlt := 0 // total number of altenative alleles
+		for _, ii := range AC {
+			i, _ := strconv.Atoi(ii)
+			totalAlt += i
+		} 
+		refKronos := 0 // Kronos wt allele
+		altKronos := 1
+		if len(altList) == 1 { 
+			if totalAlt == AN {// all lines are homozygous alt, so skip
+				continue
+			} else if totalAlt > AN {// alt allele is Kronos wt allele
+				refKronos = 1
+				altKronos = 0
+				ref0 = ll[4]
+				alt0 = ll[3]
+			} 
+		} else {// two alternative alleles
+			if totalAlt == AN {// no CS ref allele
+				refKronos = 1
+				altKronos = 2
+				ref0 = altList[0]
+				alt0 = altList[1]
+			} else { // there is 0, so 3 alleles
+				continue
+			}
+		}
+		tt := "**" // variant type: ** is indel; else AG, TC etc
+		inserttype := "."
+		if s.Contains(alt0, "*"){
+			tt = "**"
+			inserttype = "*"
+		} else {
+			if len(ref0) == len(alt0) {
+				tt = ref0 + alt0
+			} else {
+				tt = "**"
+				inserttype = "*"
+			}
+		}
+
+		Geno, refDP, altDP, totalDP, nlib, nmutlib, _, _, firstMutPos := parse3(ll[9:], refKronos, altKronos)
 		if nmutlib == 1 && nlib >= *minlibs {// mutation only in one lib and at least minlibs have coverage
 			// since the reference genome is CS, but mutants are from Kronos, so need to see which is WT allele
 			// this is for indels, not easy to do, so here I just consider CS == Kronos alleles
@@ -95,14 +144,15 @@ func main () {
 			// }
 			// Chrom Pos Ref MQ TotCov Lib Ho/He WTCov MACov #libs
 			homhet := "hom"
-			if s.Contains(Geno[firstMutPos], "0") {
+			if s.Contains(Geno[firstMutPos], strconv.Itoa(refKronos)) {
 				homhet = "het"
 			}
 			nref := refDP[firstMutPos]
 			nalt := altDP[firstMutPos]
 			ntotal := totalDP[firstMutPos]
-			if (homhet == "hom" && ntotal >= *minhom) || (homhet == "het" && ntotal >= *minhet && float64(nalt)/float64(ntotal) >= *minhetper){
-				outline := s.Join([]string{chrom, pos, ref0, alt0, MQ, DP, libNames[firstMutPos], homhet, strconv.Itoa(nref), strconv.Itoa(nalt), strconv.Itoa(nlib)}, "\t")
+			if (homhet == "hom" && ntotal >= *minhom) || (homhet == "het" && ntotal >= *minhet){
+				//outline := s.Join([]string{chrom, pos, ref0, alt0, MQ, DP, libNames[firstMutPos], homhet, strconv.Itoa(nref), strconv.Itoa(nalt), strconv.Itoa(nlib)}, "\t")
+				outline := s.Join([]string{chrom, pos, ll[3], DP, ref0, alt0, libNames[firstMutPos], homhet, strconv.Itoa(nref), strconv.Itoa(nalt), tt, strconv.Itoa(ntotal), strconv.Itoa(nlib), inserttype}, "\t")
 				w.WriteString(outline + "\n")
 			}
 		}
@@ -121,7 +171,7 @@ func check(e error) {
 // I just need the first 3
 // suppose only 1 alternative allele
 // only 1 sample has the mutation
-func parse3 (GTs []string) ([]string, []int, []int, []int, int, int, int, int, int) {
+func parse3 (GTs []string, refKronos int, altKronos int) ([]string, []int, []int, []int, int, int, int, int, int) {
 	//ll := s.Split(line, "\t")
 	//GTs := ll[9:]
 	size := len(GTs) // number of libs
@@ -138,8 +188,8 @@ func parse3 (GTs []string) ([]string, []int, []int, []int, int, int, int, int, i
 		ff := s.Split(ii, ":")
 		Geno[pos] = ff[0] // first field is always GT
 		ad := s.Split(ff[1], ",")
-		nref, _ :=  strconv.Atoi(ad[0])
-		nalt, _ :=  strconv.Atoi(ad[1])
+		nref, _ :=  strconv.Atoi(ad[refKronos])
+		nalt, _ :=  strconv.Atoi(ad[altKronos])
 		refDP[pos] = nref
 		altDP[pos] = nalt
 		gt := ff[0]
@@ -149,11 +199,11 @@ func parse3 (GTs []string) ([]string, []int, []int, []int, int, int, int, int, i
 			nmissing += 1
 		} else {
 			nlib += 1
-			if s.Contains(gt, "1") {// a mutation
+			if s.Contains(gt, strconv.Itoa(altKronos)) {// a mutation
 				nmutlib += 1
 				firstMutPos = pos
 			}
-			if s.Contains(gt, "0") {// a mutation
+			if s.Contains(gt, strconv.Itoa(refKronos)) {// a mutation
 				nwtlib += 1
 			}
 		}
