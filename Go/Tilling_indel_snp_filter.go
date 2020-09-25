@@ -31,7 +31,7 @@ func main () {
 	output := flag.String("o", "filterd_variants.tsv", "output file name")
 	minhom := flag.Int("minhom", 2, "Minimum coverage for consideration of homozygous variants")
 	minhet := flag.Int("minhet", 2, "Minimum coverage for consideration of heterozygous variants")
-	// minhetper := flag.Float64("minhetper", 0.2, "Minimum percentage for consideration of het")
+	minhetper := flag.Float64("minhetper", 0.2, "Minimum percentage for consideration of het")
 	minlibs := flag.Int("minlibs", 10, "Minimum number of libraries covered to be considered a valid position")
 	indelonly := flag.Bool("indelonly", false, "whether to only get indels")
 	flag.Parse()
@@ -68,8 +68,6 @@ func main () {
 		//fmt.Println(scanner.Text())
 		line := scanner.Text() // "\n" is already trimmed
 		ll := s.Split(line, "\t")
-		//outline := s.Join(append(ll[0:6], ll[9:]...), "\t")
-		//w.WriteString(outline + "\n")
 		chrom := ll[0]
 		pos := ll[1]
 		ref0 := ll[3] // reference allele, CS allele
@@ -78,12 +76,6 @@ func main () {
 		if len(altList) > 2 {// more than two alternative alleles
 			continue
 		}
-		// if s.Contains(alt0, ","){
-		// 	continue
-		// } // skip SNPs and multiple alts
-		//ref := ll[3] // Kronos allele
-		//alt := ll[4] // mutant
-		//format := ll[8]
 		if *indelonly && len(ref0) == len(alt0) {
 			continue
 		} // skip SNPs if need indels only
@@ -102,10 +94,10 @@ func main () {
 		} 
 		refKronos := 0 // Kronos wt allele
 		altKronos := 1
-		if len(altList) == 1 { 
+		if len(altList) == 1 { // only 1 alternative allele
 			if totalAlt == AN {// all lines are homozygous alt, so skip
 				continue
-			} else if totalAlt > AN {// alt allele is Kronos wt allele
+			} else if totalAlt > AN - totalAlt {// alt allele is more than wt allele, then CS alt allele is Kronos wt allele
 				refKronos = 1
 				altKronos = 0
 				ref0 = ll[4]
@@ -121,28 +113,32 @@ func main () {
 				continue
 			}
 		}
-		tt := "**" // variant type: ** is indel; else AG, TC etc
+		tt := "" // variant type: ** is indel; else AG, TC etc
 		inserttype := "."
-		if s.Contains(alt0, "*"){
-			tt = "**"
-			inserttype = "*"
+		if s.Contains(ll[4], "*"){
+			tt = "++"
 		} else {
 			if len(ref0) == len(alt0) {
-				tt = ref0 + alt0
+				if len(ref0) == 1 {
+					tt = ref0 + alt0
+				} else {
+					ref1, alt1 := seqdif(ref0, alt0)
+					if len(ref1) == 1 {
+						tt = ref1 + alt1
+					} else {
+						tt = "++"
+					}
+				}
 			} else {
-				tt = "**"
-				inserttype = "*"
+				tt = "++"
 			}
+		}
+		if tt == "++" {
+			inserttype = tt
 		}
 
 		Geno, refDP, altDP, totalDP, nlib, nmutlib, _, _, firstMutPos := parse3(ll[9:], refKronos, altKronos)
 		if nmutlib == 1 && nlib >= *minlibs {// mutation only in one lib and at least minlibs have coverage
-			// since the reference genome is CS, but mutants are from Kronos, so need to see which is WT allele
-			// this is for indels, not easy to do, so here I just consider CS == Kronos alleles
-			// if nmutlib > nwtlib {
-			// 	ref, alt, nmut, nwt = alt, ref, nwt, nmut // switch ref and alt
-			// }
-			// Chrom Pos Ref MQ TotCov Lib Ho/He WTCov MACov #libs
 			homhet := "hom"
 			if s.Contains(Geno[firstMutPos], strconv.Itoa(refKronos)) {
 				homhet = "het"
@@ -150,7 +146,7 @@ func main () {
 			nref := refDP[firstMutPos]
 			nalt := altDP[firstMutPos]
 			ntotal := totalDP[firstMutPos]
-			if (homhet == "hom" && ntotal >= *minhom) || (homhet == "het" && ntotal >= *minhet){
+			if (homhet == "hom" && ntotal >= *minhom) || (homhet == "het" && ntotal >= *minhet && float64(nalt)/float64(ntotal) >= *minhetper){
 				//outline := s.Join([]string{chrom, pos, ref0, alt0, MQ, DP, libNames[firstMutPos], homhet, strconv.Itoa(nref), strconv.Itoa(nalt), strconv.Itoa(nlib)}, "\t")
 				outline := s.Join([]string{chrom, pos, ll[3], DP, ref0, alt0, libNames[firstMutPos], homhet, strconv.Itoa(nref), strconv.Itoa(nalt), tt, strconv.Itoa(ntotal), strconv.Itoa(nlib), inserttype}, "\t")
 				w.WriteString(outline + "\n")
@@ -222,4 +218,22 @@ func getInfo (line string) map[string]string {
 		m[ii[0]] = ii[1]
 	}
 	return m
+}
+
+// find differences of two sequences: from the first difference to the last difference
+// seq1 and seq2 are string of the same length
+func seqdif (seq1 string, seq2 string) (dif1 string, dif2 string){
+	first := 0
+	last := 0
+	for i, _ := range seq1 {
+		if seq1[i] != seq2 [i] {
+			if first == 0 {
+				first = i
+				last = i
+			} else {
+				last = i
+			}
+		}
+	}
+	return seq1[first:(last + 1)], seq2[first:(last + 1)]
 }
