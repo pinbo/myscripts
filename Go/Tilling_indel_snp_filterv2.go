@@ -70,6 +70,9 @@ func main () {
 			continue
 		}
 		infos := getInfo(ll[7])
+		if infos["AC"] == infos["AN"] {//all mutant allele
+			continue
+		}
 		AN, _ := strconv.Atoi(infos["AN"]) // Total number of alleles in called genotypes
 		if AN < *minlibs * 2 {// too many missing data
 			continue
@@ -129,7 +132,7 @@ func main () {
 		
 		DP := infos["DP"] // total depth
 		//Geno, refDP, altDP, totalDP, nlib, nmutlib, _, _, firstMutPos := parse3(ll[9:], refKronos, *minhetper)
-		Geno, refDP, altDP, totalDP, nlib, nmutlib, _, _, mutPos, snphomhet := parse3(ll[9:], refKronos, *minhom, *minhet, *minhetper)
+		_, refDP, altDP, totalDP, nlib, nmutlib, _, _, mutPos, snphomhet, altKronosList := parse3(ll[9:], refKronos, *minhom, *minhet, *minhetper)
 		if nmutlib <= *maxmutlib && nlib >= *minlibs {// mutation only in one lib and at least minlibs have coverage
 			for _, mut := range mutPos {
 				// homhet := "hom"
@@ -137,10 +140,7 @@ func main () {
 				// 	homhet = "het"
 				// }
 				homhet := snphomhet[mut]
-				altKronos, _ := strconv.Atoi(Geno[mut][2:3])
-				if altKronos == refKronos {
-					altKronos, _ = strconv.Atoi(Geno[mut][0:1])
-				} 
+				altKronos := altKronosList[mut]
 				alt0 = alleleList[altKronos]
 				tt := "++" // variant type: ++ is indel; else AG, TC etc
 				inserttype := "."
@@ -193,7 +193,7 @@ func check(e error) {
 // I just need the first 3
 // suppose only 1 alternative allele
 // only 1 sample has the mutation
-func parse3 (GTs []string, refKronos int, minhom int, minhet int, minhetper float64) ([]string, []int, []int, []int, int, int, int, int, []int, []string) {
+func parse3 (GTs []string, refKronos int, minhom int, minhet int, minhetper float64) ([]string, []int, []int, []int, int, int, int, int, []int, []string, []int) {
 	//ll := s.Split(line, "\t")
 	//GTs := ll[9:]
 	size := len(GTs) // number of libs
@@ -202,6 +202,7 @@ func parse3 (GTs []string, refKronos int, minhom int, minhet int, minhetper floa
 	altDP := make([]int, size)
 	totalDP := make([]int, size)
 	snphomhet := make([]string, size)
+	altKronosList := make([]int, size)
 	nlib := 0 // number of libs with coverage
 	nmutlib := 0 // number of libs with mutations (0), including 0/1
 	nwtlib := 0 // number of libs with wt allele (1), including 0/1
@@ -211,14 +212,14 @@ func parse3 (GTs []string, refKronos int, minhom int, minhet int, minhetper floa
 	for pos, ii := range GTs {
 		ff := s.Split(ii, ":")
 		Geno[pos] = ff[0] // first field is always GT
-		dp, _ := strconv.Atoi(ff[2]) // total depth
-		totalDP[pos] = dp
-		ad := s.Split(ff[1], ",")
-		nref, _ :=  strconv.Atoi(ad[refKronos])
+		//dp, _ := strconv.Atoi(ff[2]) // total depth
+		//totalDP[pos] = dp
+		// ad := s.Split(ff[1], ",")
+		// nref, _ :=  strconv.Atoi(ad[refKronos])
 		//nalt, _ :=  strconv.Atoi(ad[altKronos])
-		nalt := dp - nref
-		refDP[pos] = nref
-		altDP[pos] = nalt
+		// nalt := dp - nref
+		// refDP[pos] = nref
+		// altDP[pos] = nalt
 		gt := ff[0]
 		wt := strconv.Itoa(refKronos)
 		homhet := "hom"
@@ -232,8 +233,21 @@ func parse3 (GTs []string, refKronos int, minhom int, minhet int, minhetper floa
 				if s.Contains(gt, wt) {
 					homhet = "het"
 				}
+				ad := s.Split(ff[1], ",")
+				nref, _ :=  strconv.Atoi(ad[refKronos])
+				altKronos, _ := strconv.Atoi(gt[2:3])
+				if altKronos == refKronos {
+					altKronos, _ = strconv.Atoi(gt[0:1])
+				}
+				altKronosList[pos] = altKronos
+				nalt, _ :=  strconv.Atoi(ad[altKronos])
+				refDP[pos] = nref
+				altDP[pos] = nalt
+				dp := nref + nalt
+				totalDP[pos] = dp
 				if (homhet == "hom" && dp >= minhom) || (homhet == "het" && dp >= minhet && float64(nalt) >= float64(dp) * minhetper){
 					nmutlib += 1
+					// get mutation position
 					mutPos = append(mutPos, pos)
 					snphomhet[pos] = homhet
 				}
@@ -241,7 +255,7 @@ func parse3 (GTs []string, refKronos int, minhom int, minhet int, minhetper floa
 		}
 	}
 
-	return Geno, refDP, altDP, totalDP, nlib, nmutlib, nwtlib, nmissing, mutPos, snphomhet
+	return Geno, refDP, altDP, totalDP, nlib, nmutlib, nwtlib, nmissing, mutPos, snphomhet, altKronosList
 }
 
 // process info
