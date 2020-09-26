@@ -92,8 +92,11 @@ func main () {
 			counts = append(counts, i)
 		} 
 		counts[0] = AN - totalAlt // now counts has counts for 0, 1, 2 
-		_, refKronos := max(counts) // the max allele is refKronos
+		maxcount, refKronos := max(counts) // the max allele is refKronos
 		ref0 = alleleList[refKronos]
+		if AN - maxcount > 4 && AN - maxcount > 2 * *maxmutlib {// too many genotypes with alterantive alleles
+			continue
+		}
 		// refKronos := 0 // Kronos wt allele
 		// altKronos := 1
 		// if len(altList) == 1 { // only 1 alternative allele
