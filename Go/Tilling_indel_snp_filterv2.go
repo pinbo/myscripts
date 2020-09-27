@@ -9,7 +9,7 @@
 package main
 import (
     "bufio"
-    //"fmt"
+    "fmt"
     "os"
     s "strings"
 	"strconv"
@@ -17,6 +17,8 @@ import (
 )
 
 func main () {
+	var version = "undefined"
+	fmt.Println("version " + version)
 	input := flag.String("i", "example.vcf", "input vcf file name")
 	output := flag.String("o", "filterd_variants.tsv", "output file name")
 	minhom := flag.Int("minhom", 2, "Minimum coverage for consideration of homozygous variants")
