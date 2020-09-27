@@ -26,6 +26,8 @@ func main () {
 	indelonly := flag.Bool("indelonly", false, "whether to only get indels")
 	minmq := flag.Float64("minmq", 20.0, "Minimum mapping quality")
 	maxmutlib := flag.Int("maxmutlib", 1, "maximum number of libaries with the mutations at a position")
+	moreinfor := flag.Bool("moreinfor", false, "whether to print more information for debugging in the end of each line")
+	nophased := flag.Bool("nophased", true, "whether to include phased calls, which are mostly because multiple SNPs in one read")
 	flag.Parse()
 
 	//info, _ := os.Stdin.Stat()
@@ -135,8 +137,8 @@ func main () {
 		
 		DP := infos["DP"] // total depth
 		//Geno, refDP, altDP, totalDP, nlib, nmutlib, _, _, firstMutPos := parse3(ll[9:], refKronos, *minhetper)
-		_, refDP, altDP, totalDP, nlib, nmutlib, _, _, mutPos, snphomhet, altKronosList := parse3(ll[9:], refKronos, *minhom, *minhet, *minhetper)
-		if nmutlib <= *maxmutlib && nlib >= *minlibs {// mutation only in one lib and at least minlibs have coverage
+		wholeGeno, refDP, altDP, totalDP, nlib, nmutlib, _, _, mutPos, snphomhet, altKronosList := parse3(ll[9:], refKronos, *minhom, *minhet, *minhetper, *nophased)
+		if nmutlib > 0 && nmutlib <= *maxmutlib && nlib >= *minlibs {// mutation only in one lib and at least minlibs have coverage
 			for _, mut := range mutPos {
 				// homhet := "hom"
 				// if s.Contains(Geno[mut], strconv.Itoa(refKronos)) {
@@ -177,6 +179,9 @@ func main () {
 				//if (homhet == "hom" && ntotal >= *minhom) || (homhet == "het" && ntotal >= *minhet){
 				//outline := s.Join([]string{chrom, pos, ref0, alt0, MQ, DP, libNames[firstMutPos], homhet, strconv.Itoa(nref), strconv.Itoa(nalt), strconv.Itoa(nlib)}, "\t")
 				outline := s.Join([]string{chrom, pos, ll[3], DP, ref0, alt0, libNames[mut], homhet, strconv.Itoa(nref), strconv.Itoa(nalt), tt, strconv.Itoa(ntotal), strconv.Itoa(nlib), inserttype}, "\t")
+				if *moreinfor {
+					outline += "\t" + s.Join([]string{wholeGeno[mut], ll[7]}, "\t")
+				}
 				w.WriteString(outline + "\n")
 				//}
 			}
@@ -196,11 +201,12 @@ func check(e error) {
 // I just need the first 3
 // suppose only 1 alternative allele
 // only 1 sample has the mutation
-func parse3 (GTs []string, refKronos int, minhom int, minhet int, minhetper float64) ([]string, []int, []int, []int, int, int, int, int, []int, []string, []int) {
+func parse3 (GTs []string, refKronos int, minhom int, minhet int, minhetper float64, nophased bool) ([]string, []int, []int, []int, int, int, int, int, []int, []string, []int) {
 	//ll := s.Split(line, "\t")
 	//GTs := ll[9:]
 	size := len(GTs) // number of libs
-	Geno := make([]string, size)
+	//Geno := make([]string, size) // 0/1
+	wholeGeno := make([]string, size) // the whole information for the genotype
 	refDP := make([]int, size)
 	altDP := make([]int, size)
 	totalDP := make([]int, size)
@@ -213,8 +219,9 @@ func parse3 (GTs []string, refKronos int, minhom int, minhet int, minhetper floa
 	//firstMutPos := 0
 	var mutPos []int
 	for pos, ii := range GTs {
+		wholeGeno[pos] = ii
 		ff := s.Split(ii, ":")
-		Geno[pos] = ff[0] // first field is always GT
+		//Geno[pos] = ff[0] // first field is always GT
 		//dp, _ := strconv.Atoi(ff[2]) // total depth
 		//totalDP[pos] = dp
 		// ad := s.Split(ff[1], ",")
@@ -224,6 +231,9 @@ func parse3 (GTs []string, refKronos int, minhom int, minhet int, minhetper floa
 		// refDP[pos] = nref
 		// altDP[pos] = nalt
 		gt := ff[0]
+		if nophased && s.Contains(gt, "|") {
+			continue
+		}
 		wt := strconv.Itoa(refKronos)
 		homhet := "hom"
 		if s.Contains(gt, "."){
@@ -258,7 +268,7 @@ func parse3 (GTs []string, refKronos int, minhom int, minhet int, minhetper floa
 		}
 	}
 
-	return Geno, refDP, altDP, totalDP, nlib, nmutlib, nwtlib, nmissing, mutPos, snphomhet, altKronosList
+	return wholeGeno, refDP, altDP, totalDP, nlib, nmutlib, nwtlib, nmissing, mutPos, snphomhet, altKronosList
 }
 
 // process info
