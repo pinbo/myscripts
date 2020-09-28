@@ -247,7 +247,7 @@ func parse3 (GTs []string, refKronos int, minhom int, minhet int, minhetper floa
 			nmissing += 1
 		} else {
 			// nlib += 1
-			if (gt == wt + "/" + wt || gt == wt + "|" + wt) && nref > minWT {//homo WT
+			if (gt == wt + "/" + wt || gt == wt + "|" + wt) && nref >= minWT {//homo WT
 				nwtlib += 1
 			} else {// with mutation
 				if s.Contains(gt, wt) {
