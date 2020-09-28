@@ -29,7 +29,7 @@ func main () {
 	maxmutlib := flag.Int("maxmutlib", 1, "maximum number of libaries with the mutations at a position")
 	moreinfor := flag.Bool("moreinfor", false, "whether to print more information for debugging in the end of each line")
 	nophased := flag.Bool("nophased", false, "whether to include phased calls, which are mostly because multiple SNPs in one read")
-	minWT := flag.Int("minWT", 2, "Minimum coverage for consideration of a homozygous wild type genotype")
+	minWT := flag.Int("minWT", 1, "Minimum coverage for consideration of a homozygous wild type genotype")
 	minQual := flag.Float64("minQual", 100.0, "Minimum vcf quality")
 	flag.Parse()
 
