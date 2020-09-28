@@ -30,6 +30,7 @@ func main () {
 	moreinfor := flag.Bool("moreinfor", false, "whether to print more information for debugging in the end of each line")
 	nophased := flag.Bool("nophased", true, "whether to include phased calls, which are mostly because multiple SNPs in one read")
 	minWT := flag.Int("minWT", 2, "Minimum coverage for consideration of a homozygous wild type genotype")
+	minQual := flag.Float64("minQual", 100.0, "Minimum vcf quality")
 	flag.Parse()
 
 	//info, _ := os.Stdin.Stat()
@@ -64,6 +65,10 @@ func main () {
 		//fmt.Println(scanner.Text())
 		line := scanner.Text() // "\n" is already trimmed
 		ll := s.Split(line, "\t")
+		qual, _ := strconv.ParseFloat(ll[5], 64) 
+		if qual < *minQual {
+			continue
+		}
 		chrom := ll[0]
 		pos := ll[1]
 		ref0 := ll[3] // reference allele, CS allele
