@@ -265,7 +265,7 @@ func parse3 (GTs []string, refKronos int, minhom int, minhet int, minhetper floa
 				altDP[pos] = nalt
 				dp := nref + nalt
 				totalDP[pos] = dp
-				if (homhet == "hom" && dp >= minhom) || (homhet == "het" && dp >= minhet && float64(nalt) >= float64(dp) * minhetper){
+				if (homhet == "hom" && nalt >= minhom) || (homhet == "het" && nalt >= minhet && float64(nalt) >= float64(dp) * minhetper){
 					nmutlib += 1
 					// get mutation position
 					mutPos = append(mutPos, pos)
