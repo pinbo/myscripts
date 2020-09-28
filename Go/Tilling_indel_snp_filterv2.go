@@ -15,9 +15,8 @@ import (
 	"strconv"
 	"flag"
 )
-
-func main () {
-	var version = "undefined"
+var version = "undefined"
+func main () {	
 	fmt.Println("version " + version)
 	input := flag.String("i", "example.vcf", "input vcf file name")
 	output := flag.String("o", "filterd_variants.tsv", "output file name")
@@ -30,6 +29,7 @@ func main () {
 	maxmutlib := flag.Int("maxmutlib", 1, "maximum number of libaries with the mutations at a position")
 	moreinfor := flag.Bool("moreinfor", false, "whether to print more information for debugging in the end of each line")
 	nophased := flag.Bool("nophased", true, "whether to include phased calls, which are mostly because multiple SNPs in one read")
+	minWT := flag.Int("minWT", 5, "Minimum coverage for consideration of a homozygous wild type genotype")
 	flag.Parse()
 
 	//info, _ := os.Stdin.Stat()
@@ -139,7 +139,7 @@ func main () {
 		
 		DP := infos["DP"] // total depth
 		//Geno, refDP, altDP, totalDP, nlib, nmutlib, _, _, firstMutPos := parse3(ll[9:], refKronos, *minhetper)
-		wholeGeno, refDP, altDP, totalDP, nlib, nmutlib, _, _, mutPos, snphomhet, altKronosList := parse3(ll[9:], refKronos, *minhom, *minhet, *minhetper, *nophased)
+		wholeGeno, refDP, altDP, totalDP, nlib, nmutlib, _, _, mutPos, snphomhet, altKronosList := parse3(ll[9:], refKronos, *minhom, *minhet, *minhetper, *nophased, *minWT)
 		if nmutlib > 0 && nmutlib <= *maxmutlib && nlib >= *minlibs {// mutation only in one lib and at least minlibs have coverage
 			for _, mut := range mutPos {
 				// homhet := "hom"
@@ -182,7 +182,7 @@ func main () {
 				//outline := s.Join([]string{chrom, pos, ref0, alt0, MQ, DP, libNames[firstMutPos], homhet, strconv.Itoa(nref), strconv.Itoa(nalt), strconv.Itoa(nlib)}, "\t")
 				outline := s.Join([]string{chrom, pos, ll[3], DP, ref0, alt0, libNames[mut], homhet, strconv.Itoa(nref), strconv.Itoa(nalt), tt, strconv.Itoa(ntotal), strconv.Itoa(nlib), inserttype}, "\t")
 				if *moreinfor {
-					outline += "\t" + s.Join([]string{wholeGeno[mut], ll[7]}, "\t")
+					outline += "\t" + s.Join([]string{wholeGeno[mut], ll[5], ll[7]}, "\t")
 				}
 				w.WriteString(outline + "\n")
 				//}
@@ -203,7 +203,7 @@ func check(e error) {
 // I just need the first 3
 // suppose only 1 alternative allele
 // only 1 sample has the mutation
-func parse3 (GTs []string, refKronos int, minhom int, minhet int, minhetper float64, nophased bool) ([]string, []int, []int, []int, int, int, int, int, []int, []string, []int) {
+func parse3 (GTs []string, refKronos int, minhom int, minhet int, minhetper float64, nophased bool, minWT int) ([]string, []int, []int, []int, int, int, int, int, []int, []string, []int) {
 	//ll := s.Split(line, "\t")
 	//GTs := ll[9:]
 	size := len(GTs) // number of libs
@@ -226,8 +226,8 @@ func parse3 (GTs []string, refKronos int, minhom int, minhet int, minhetper floa
 		//Geno[pos] = ff[0] // first field is always GT
 		//dp, _ := strconv.Atoi(ff[2]) // total depth
 		//totalDP[pos] = dp
-		// ad := s.Split(ff[1], ",")
-		// nref, _ :=  strconv.Atoi(ad[refKronos])
+		ad := s.Split(ff[1], ",")
+		nref, _ :=  strconv.Atoi(ad[refKronos])
 		//nalt, _ :=  strconv.Atoi(ad[altKronos])
 		// nalt := dp - nref
 		// refDP[pos] = nref
@@ -241,15 +241,15 @@ func parse3 (GTs []string, refKronos int, minhom int, minhet int, minhetper floa
 		if s.Contains(gt, "."){
 			nmissing += 1
 		} else {
-			nlib += 1
-			if gt == wt + "/" + wt || gt == wt + "|" + wt {//homo WT
+			// nlib += 1
+			if (gt == wt + "/" + wt || gt == wt + "|" + wt) && nref > minWT {//homo WT
 				nwtlib += 1
 			} else {// with mutation
 				if s.Contains(gt, wt) {
 					homhet = "het"
 				}
-				ad := s.Split(ff[1], ",")
-				nref, _ :=  strconv.Atoi(ad[refKronos])
+				// ad := s.Split(ff[1], ",")
+				// nref, _ :=  strconv.Atoi(ad[refKronos])
 				altKronos, _ := strconv.Atoi(gt[2:3])
 				if altKronos == refKronos {
 					altKronos, _ = strconv.Atoi(gt[0:1])
@@ -269,6 +269,7 @@ func parse3 (GTs []string, refKronos int, minhom int, minhet int, minhetper floa
 			}
 		}
 	}
+	nlib = nwtlib + nmutlib
 
 	return wholeGeno, refDP, altDP, totalDP, nlib, nmutlib, nwtlib, nmissing, mutPos, snphomhet, altKronosList
 }
