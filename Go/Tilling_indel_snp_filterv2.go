@@ -29,6 +29,7 @@ func main () {
 	maxmutlib := flag.Int("maxmutlib", 1, "maximum number of libaries with the mutations at a position")
 	moreinfor := flag.Bool("moreinfor", false, "whether to print more information for debugging in the end of each line")
 	nophased := flag.Bool("nophased", false, "whether to include phased calls, which are mostly because multiple SNPs in one read")
+	addQual := flag.Bool("addQual", false, "whether to print SNP QUAL in the end")
 	minWT := flag.Int("minWT", 1, "Minimum coverage for consideration of a homozygous wild type genotype")
 	minQual := flag.Float64("minQual", 100.0, "Minimum vcf quality")
 	flag.Parse()
@@ -188,6 +189,9 @@ func main () {
 				outline := s.Join([]string{chrom, pos, ll[3], DP, ref0, alt0, libNames[mut], homhet, strconv.Itoa(nref), strconv.Itoa(nalt), tt, strconv.Itoa(ntotal), strconv.Itoa(nlib), inserttype}, "\t")
 				if *moreinfor {
 					outline += "\t" + s.Join([]string{wholeGeno[mut], ll[5], ll[7]}, "\t")
+				}
+				if *addQual {//add QUAL in the end
+					outline += "\t" + ll[5]
 				}
 				w.WriteString(outline + "\n")
 				//}
