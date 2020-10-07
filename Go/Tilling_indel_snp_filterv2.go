@@ -157,7 +157,8 @@ func main () {
 				alt0 = alleleList[altKronos]
 				tt := "++" // variant type: ++ is indel; else AG, TC etc
 				inserttype := "."
-				if s.Contains(ll[4], "*"){
+				// if s.Contains(ll[4], "*"){
+				if ref0 == "*" {
 					tt = "++"
 				} else {
 					if len(ref0) == len(alt0) {
