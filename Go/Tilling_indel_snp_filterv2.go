@@ -76,7 +76,7 @@ func main () {
 		alt0 := ll[4] // alternative alleles, either Kronos allele or true mutations
 		//altList := s.Split(alt0, ",")
 		alleleList := s.Split(ref0 + "," + alt0, ",")
-		if len(alleleList) > 3 {// more than two alternative alleles
+		if len(alleleList) > 2 {// more than two alternative alleles
 			continue
 		}
 		infos := getInfo(ll[7])
