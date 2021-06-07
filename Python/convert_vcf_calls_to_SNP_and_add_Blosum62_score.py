@@ -20,7 +20,7 @@
 #
 # Before running this script
 ## extract effects and subsets from a vcf file using snpSift
-# cat confidence-region-subset.vcf | java -jar /path/to/SnpSift.jar filter "( QUAL > 100 )" | /path/to/snpEff/scripts/vcfEffOnePerLine.pl | java -jar /path/to/SnpSift.jar extractFields - CHROM POS REF ALT QUAL DP MQ "EFFECT" "GENE" "FEATUREID" "IMPACT" "HGVS_P" "GEN[*]" > confidence-region-subset-Qual100-SNPeff.txt
+# cat confidence-region-subset.vcf | java -jar /path/to/SnpSift.jar filter "( QUAL > 100 )" | /path/to/snpEff/scripts/vcfEffOnePerLine.pl | java -jar /path/to/SnpSift.jar extractFields - CHROM POS REF ALT QUAL AC AN DP MQ "EFFECT" "GENE" "FEATUREID" "IMPACT" "HGVS_P" "GEN[*]" > confidence-region-subset-Qual100-SNPeff.txt
 ## convert GT to SNP table
 # ./convert_vcf_calls_to_SNP_and_add_Blosum62_score.py confidence-region-subset-Qual100-SNPeff.txt confidence-region-subset-Qual100-SNPeff-converted.txt
 
