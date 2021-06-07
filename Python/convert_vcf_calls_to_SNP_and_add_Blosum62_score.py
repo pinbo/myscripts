@@ -19,10 +19,10 @@
 #  MA 02110-1301, USA.
 #
 # Before running this script
-## extract effects and subsets from a vcf file
-# cat Chen-confidence-region-subset.vcf | java -jar ../SnpSift.jar filter "( QUAL > 100 )" | ../scripts/vcfEffOnePerLine.pl | java -jar ../SnpSift.jar extractFields - CHROM POS REF ALT QUAL DP MQ "EFFECT" "GENE" "FEATUREID" "IMPACT" "HGVS_P" "GEN[*]" > Chen-confidence-region-subset-Qual100-SNPeff.txt
+## extract effects and subsets from a vcf file using snpSift
+# cat confidence-region-subset.vcf | java -jar /path/to/SnpSift.jar filter "( QUAL > 100 )" | /path/to/snpEff/scripts/vcfEffOnePerLine.pl | java -jar /path/to/SnpSift.jar extractFields - CHROM POS REF ALT QUAL DP MQ "EFFECT" "GENE" "FEATUREID" "IMPACT" "HGVS_P" "GEN[*]" > confidence-region-subset-Qual100-SNPeff.txt
 ## convert GT to SNP table
-# convert_vcf_calls_to_SNP_and_add_Blosum62_score.py Chen-confidence-region-subset-Qual100-SNPeff.txt Chen-confidence-region-subset-Qual100-SNPeff-converted.txt
+# ./convert_vcf_calls_to_SNP_and_add_Blosum62_score.py confidence-region-subset-Qual100-SNPeff.txt confidence-region-subset-Qual100-SNPeff-converted.txt
 
 # example
 # ./convert_vcf_calls_to_SNP_and_add_Blosum62_score.py input_file output_file
@@ -107,10 +107,6 @@ B62table = [[9, -1, -1, -3, 0, -3, -3, -3, -4, -3, -3, -3, -3, -1, -1, -1, -1, -
 in_file = sys.argv[1]
 out_file = sys.argv[2]
 out = open(out_file, "w")
-# this header is only Dubcovsky lab lines
-header = ["CHROM", "POS", "REF", "ALT", "QUAL", "DP", "MQ", "EFFECT", "GENE", "FEATUREID", "IMPACT", "HGVS_P", "AA_change", "Blosum62", "2045A", "AvocetS", "Bakahtawar94", "Berkut", "CAP2", "D447-DW1", "DD", "DV92", "Excalibur", "G25-Yr15", "G3116", "Gredho", "Hahn-RW", "Inayama", "Kronos0", "Kronos280-1-Yr15", "LR23", "LR3", "Langdon", "PBW343", "PI347731", "PI503555", "PI519805", "Pavon", "RAC875", "RIL143", "RSI5", "Rusty", "Svevo", "UC1036", "UC1419", "Zavitan"]
-
-out.write("\t".join(header) + "\n")
 
 def gt2snp(allele_list, gt):
 	c = "" # snp calls
@@ -126,29 +122,44 @@ def gt2snp(allele_list, gt):
 
 with open(in_file) as file_one:
 	header_line = next(file_one)
+	out.write(header_line + "\n")
+	n = 0 # line number
 	for line in file_one:
 		# log.write(line)
 		line = line.strip()
+		n += 1
+		#print("line number: ", n);
 		# calculate BLOSUM62 score
 		if line:
 			ll = line.split("\t")
-			if ll[11]:
-				AAchange = ll[11].lstrip("p.") # p.Arg25His
-				ref_AA, pos, alt_AA = re.split(r'(\d+)', AAchange)
-				AAsingle = AA3letter2[ref_AA] + pos + AA3letter2[alt_AA]
-				if ll[7] == "missense_variant":
-					B62 = B62table[B62header2.index(ref_AA)][B62header2.index(alt_AA)]
+			B62 = ""
+			AAsingle = ""
+			if ll[13]:
+				AAchange = ll[13].lstrip("p.") # p.Arg25His
+				if "del" in AAchange or "ins" in AAchange or "*" in AAchange or "fs" in AAchange:
+					AAsingle = AAchange
+					B62 = "-10"
 				else:
-					B62 = ""
-			else:
-				B62 = ""
-				AAsingle = ""
-		# convert GT to SNPs
-		GTs = [x.split(":")[0] for x in ll[12:]]
-		ref = ll[2]
-		alt = ll[3].split(",") # there may be more than one alternative alleles
-		alleles = [ref] + alt # this way, 0 will be ref, and 1, 2 ... will be alternative allele
-		SNPs = [gt2snp(alleles, x) for x in GTs]
-		out.write("\t".join(ll[0:12] + [AAsingle, str(B62)] + SNPs) + "\n")
+					try:
+						ref_AA, pos, alt_AA = re.split(r'(\d+)', AAchange)
+					except ValueError:
+							AAsingle = "NA"
+							continue
+					if ref_AA in AA3letter2 and alt_AA in AA3letter2:
+						AAsingle = AA3letter2[ref_AA] + pos + AA3letter2[alt_AA]
+					if ll[9] == "missense_variant":
+						try:
+							B62 = B62table[B62header2.index(ref_AA)][B62header2.index(alt_AA)]
+						except ValueError:
+							B62 = "NA"
+			if ll[12] == "HIGH":
+				B62 = "-10"
+			# convert GT to SNPs
+			GTs = [x.split(":")[0] for x in ll[14:]]
+			ref = ll[2]
+			alt = ll[3].split(",") # there may be more than one alternative alleles
+			alleles = [ref] + alt # this way, 0 will be ref, and 1, 2 ... will be alternative allele
+			SNPs = [gt2snp(alleles, x) for x in GTs]
+			out.write("\t".join(ll[0:14] + [AAsingle, str(B62)] + SNPs) + "\n")
 
 out.close()
