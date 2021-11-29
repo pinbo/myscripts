@@ -110,7 +110,7 @@ out = open(out_file, "w")
 
 def gt2snp(allele_list, gt):
 	c = "" # snp calls
-	if "." in gt: # missing "./." or "."
+	if "./." in gt: # missing "./."
 		c = "N"
 	else:
 		a, b = gt.split("/")
