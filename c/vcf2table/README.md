@@ -13,3 +13,6 @@ Convert a biallelic vcf file to a SNP table
 # or from stdin
 cat wheatcap.vcf | ./vcf2table - out.txt
 ```
+
+## Update
+- 2024-07-05: use dynamic vector from kvec; the original version used fixed length vector, which cannot handle vcf files with too many samples.

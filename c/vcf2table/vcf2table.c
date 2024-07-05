@@ -1,23 +1,46 @@
 // to compile: gcc -Wall -g vcf2table.c -o vcf2table
 // use default getline(); works with gcc in cygwin
+// 2024-07-05: use kvec for dynamic vector
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include "kvec.h"
 
+// split by substring (not char), return an array of substring
+// typedef kvec_t(int) kvecn; // int or char vector
+typedef kvec_t(char *) kvecs; // string vector
+char ** splitsub(char *str, const char *delim, int *n)
+{
+    kvecs array;
+    kv_init(array);
+    size_t dl = strlen(delim); // delim length
+    kv_push(char *, array, str);
+    *n = 1;
+    char *p, *tmp;
+    p = tmp = str;
+    while (p != NULL){
+        p = strstr(tmp, delim);
+        if (p == NULL) return array.a;
+        *p = '\0';
+        tmp = p + dl;
+        // printf("tmp is %s \n", tmp);
+        kv_push(char *, array, tmp);
+        *n += 1;
+    }
+    return array.a;
+}
 
 // #define MAX_LINE_LEN 1024
 #define MAX_FIELDS 100
 #define MAX_ALLELES 10
 
 void parse_vcf(FILE *input, FILE *output) {
-    // char line[MAX_LINE_LEN];
-    char *fields[MAX_FIELDS];
-    char *alleles[MAX_ALLELES + 1];  // REF + ALT alleles
     char *line = NULL;
     size_t len = 0;
 
     // while (fgets(line, sizeof(line), input)) {
     while(getline(&line, &len, input) != -1) {
+        // if (len == 0) continue; // skip blank lines
         if (line[0] == '#') {
             if (line[1] != '#') {
                 // fprintf(output, "CHROM\tPOS\tID\tREF\tALT\tQUAL\tFILTER\tINFO\tFORMAT");
@@ -35,16 +58,9 @@ void parse_vcf(FILE *input, FILE *output) {
         } else {
             // This is a data line
             int field_count = 0;
-            char *token = strtok(line, "\t\n");
-            while (token != NULL) {
-                fields[field_count++] = token;
-                token = strtok(NULL, "\t\n");
-            }
-
+            char **fields = splitsub(line, "\t", &field_count);
             // Print basic VCF fields
-            for (int i = 0; i < 9; i++) {
-                if (i == 6 || i == 7 || i == 8)
-                    continue;
+            for (int i = 0; i < 6; i++) {
                 if (i > 0) {
                     fprintf(output, "\t");
                 }
@@ -52,33 +68,30 @@ void parse_vcf(FILE *input, FILE *output) {
             }
 
             // Parse REF and ALT alleles
-            alleles[0] = fields[3]; // REF allele
-            int allele_count = 1;
-            token = strtok(fields[4], ",");
-            while (token != NULL) {
-                alleles[allele_count++] = token;
-                token = strtok(NULL, ",");
-            }
-
+            char *ref = fields[3]; // REF allele
+            int allele_count = 1; // alt allele count
+            char **alleles = splitsub(fields[4], ",", &allele_count);
             // Process genotype fields
             for (int i = 9; i < field_count; i++) {
                 fprintf(output, "\t");
-
                 // Extract the GT field (assume it's the first field in the sample column)
                 char *sample = fields[i];
                 char *gt = strtok(sample, ":");
-
                 // Convert GT to ATGC codes
                 int allele1, allele2;
                 if (sscanf(gt, "%d/%d", &allele1, &allele2) == 2 || sscanf(gt, "%d|%d", &allele1, &allele2) == 2) {
                     // fprintf(output, "%s%s", alleles[allele1], alleles[allele2]); // biallele output
                     // single allele output
-                    if (allele1 == allele2) fprintf(output, "%s", alleles[allele1]);
-                    else fprintf(output, "%s", "H");
+                    if (allele1 == allele2) {
+                        if (allele1 == 0) fprintf(output, "%s", ref);
+                        else fprintf(output, "%s", alleles[allele1 - 1]);
+                    } else fprintf(output, "%s", "H");
                 } else {
                     fprintf(output, "N"); // Handle missing or complex genotypes
                 }
             }
+            free(fields);
+            free(alleles);
             fprintf(output, "\n");
         }
     }
