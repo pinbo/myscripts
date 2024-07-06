@@ -100,7 +100,7 @@ void parse_vcf(FILE *input, FILE *output) {
 
 int main(int argc, char *argv[]) {
     if (argc != 3) {
-        fprintf(stderr, "Usage:\n %s input.vcf output.txt\nOR\nzcat input.vcf.gz | %s - output.txt", argv[0], argv[0]);
+        fprintf(stderr, "Usage:\n %s input.vcf output.txt\nOR\nzcat input.vcf.gz | %s - output.txt\n", argv[0], argv[0]);
         return 1;
     }
 
