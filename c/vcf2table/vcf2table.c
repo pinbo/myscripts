@@ -9,30 +9,25 @@
 // split by substring (not char), return an array of substring
 // typedef kvec_t(int) kvecn; // int or char vector
 typedef kvec_t(char *) kvecs; // string vector
-char ** splitsub(char *str, const char *delim, int *n)
-{
+char ** splitsub(char *str, const char *delim, int *n) {
     kvecs array;
     kv_init(array);
-    size_t dl = strlen(delim); // delim length
+    size_t dl = strlen(delim);
     kv_push(char *, array, str);
     *n = 1;
-    char *p, *tmp;
-    p = tmp = str;
-    while (p != NULL){
-        p = strstr(tmp, delim);
-        if (p == NULL) return array.a;
+    char *p = str;
+    while ((p = strstr(p, delim)) != NULL) {
         *p = '\0';
-        tmp = p + dl;
-        // printf("tmp is %s \n", tmp);
-        kv_push(char *, array, tmp);
+        p += dl;
+        kv_push(char *, array, p);
         *n += 1;
     }
     return array.a;
 }
 
 // #define MAX_LINE_LEN 1024
-#define MAX_FIELDS 100
-#define MAX_ALLELES 10
+// #define MAX_FIELDS 100
+// #define MAX_ALLELES 10
 
 void parse_vcf(FILE *input, FILE *output) {
     char *line = NULL;
@@ -60,11 +55,9 @@ void parse_vcf(FILE *input, FILE *output) {
             int field_count = 0;
             char **fields = splitsub(line, "\t", &field_count);
             // Print basic VCF fields
-            for (int i = 0; i < 6; i++) {
-                if (i > 0) {
-                    fprintf(output, "\t");
-                }
-                fprintf(output, "%s", fields[i]);
+            fprintf(output, "%s", fields[0]);
+            for (int i = 1; i < 6; i++) {
+                fprintf(output, "\t%s", fields[i]);
             }
 
             // Parse REF and ALT alleles

@@ -6,7 +6,7 @@
 #include <errno.h>
 
 // #define MAX_LINE_LEN 1024
-#define MAX_FIELDS 100
+#define MAX_FIELDS 1000
 #define MAX_ALLELES 10
 
 // This will only have effect on Windows with MSVC
@@ -113,13 +113,9 @@ void parse_vcf(FILE *input, FILE *output) {
             }
 
             // Print basic VCF fields
-            for (int i = 0; i < 9; i++) {
-                if (i == 6 || i == 7 || i == 8)
-                    continue;
-                if (i > 0) {
-                    fprintf(output, "\t");
-                }
-                fprintf(output, "%s", fields[i]);
+            fprintf(output, "%s", fields[0]);
+            for (int i = 1; i < 6; i++) {
+                fprintf(output, "\t%s", fields[i]);
             }
 
             // Parse REF and ALT alleles
