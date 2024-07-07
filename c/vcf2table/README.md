@@ -5,7 +5,17 @@ Convert a biallelic vcf file to a SNP table
 - `vcf2table.c` use the default `get_line` funcion to read a whole line. It works with gcc in cygwin, so I suppose it works in windows OS now. **Use this one**
 
 ## compile
-`gcc -Wall -g vcf2table.c -o vcf2table`
+```sh
+# for local use
+gcc -Wall -O3 vcf2table.c -o vcf2table
+
+# for WebAssembly
+# need to install emsdk
+# https://emscripten.org/docs/getting_started/downloads.html
+
+emcc -Wall  vcf2table.c -o vcf2table.js -s EXPORTED_RUNTIME_METHODS=["callMain"] -s ALLOW_MEMORY_GROWTH=1 -O3
+
+```
 
 ## Usage
 ```sh
